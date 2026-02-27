@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Praxis — You’re on the list</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Background accents -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <main class="wrap">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <a class="brand link-reset" href="index.html">
+        <div class="logo">P</div>
+        <span class="brand-name">Praxis</span>
+      </a>
+      <a class="pill" href="index.html#early-access">Back to home</a>
+    </header>
+
+    <section class="hero thanks-hero">
+      <p class="kicker">Early access</p>
+
+      <h1>
+        You’re in. <span class="accent">Welcome to Praxis.</span>
+      </h1>
+
+      <p class="subhead">
+        Thanks for joining the waitlist. We’re onboarding early testers in waves and you’ll get an invite as capacity opens.
+      </p>
+
+      <div class="thanks-card">
+        <div class="thanks-row">
+          <div class="thanks-icon">✓</div>
+          <div>
+            <div class="thanks-title">What happens next</div>
+            <div class="thanks-text">
+              You’ll receive occasional updates and your early access invite when it’s your turn.
+            </div>
+          </div>
+        </div>
+
+        <div class="thanks-divider"></div>
+
+        <div class="thanks-title">Help us reach the right owners</div>
+        <p class="thanks-text">
+          If you know a small business owner who wants AI without the confusion, send them this page:
+        </p>
+
+        <div class="share-row">
+          <input id="shareLink" class="share-input" readonly />
+          <button class="native-button share-btn" id="copyBtn">Copy link</button>
+        </div>
+
+        <div class="share-buttons">
+          <a class="pill" id="shareLinkedIn" target="_blank" rel="noopener">Share on LinkedIn</a>
+          <a class="pill" id="shareX" target="_blank" rel="noopener">Share on X</a>
+          <a class="pill" id="shareEmail" target="_blank" rel="noopener">Share via Email</a>
+        </div>
+
+        <div class="thanks-divider"></div>
+
+        <div class="thanks-actions">
+          <a class="pill" href="index.html">← Back</a>
+          <a class="native-button" href="index.html#early-access">View what we’re building →</a>
+        </div>
+
+        <p class="fineprint" style="margin-top: 12px;">
+          P.S. If you don’t see an email soon, check Promotions/Spam and mark us as safe.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Praxis. Early access program.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Use current origin if hosted, fallback to local file path
+    const homeUrl = window.location.origin && window.location.origin !== "null"
+      ? window.location.origin + "/"
+      : "index.html";
+
+    const shareUrl = (window.location.origin && window.location.origin !== "null")
+      ? window.location.origin
+      : window.location.href.replace("thanks.html", "index.html");
+
+    const shareText = "Praxis helps small businesses pick the right AI tools (fast) — with privacy + ownership trust signals.";
+
+    const input = document.getElementById("shareLink");
+    input.value = shareUrl;
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(shareUrl);
+        const btn = document.getElementById("copyBtn");
+        const old = btn.textContent;
+        btn.textContent = "Copied ✓";
+        setTimeout(() => btn.textContent = old, 1200);
+      }catch(e){
+        // fallback
+        input.select();
+        document.execCommand("copy");
+      }
+    });
+
+    // LinkedIn share
+    document.getElementById("shareLinkedIn").href =
+      "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(shareUrl);
+
+    // X (Twitter) share
+    document.getElementById("shareX").href =
+      "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) +
+      "&url=" + encodeURIComponent(shareUrl);
+
+    // Email share
+    document.getElementById("shareEmail").href =
+      "mailto:?subject=" + encodeURIComponent("Quick AI tool shortcut for small businesses") +
+      "&body=" + encodeURIComponent(shareText + "\n\n" + shareUrl);
+  </script>
+
+</body>
+</html>

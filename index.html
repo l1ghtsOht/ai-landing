@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Praxis — Early Access</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Background accents -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <main class="wrap">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">P</div>
+        <span class="brand-name">Praxis</span>
+      </div>
+      <button class="pill" id="openBeehiivTop">Join Early Access</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="kicker">AI tool recommendations for small businesses</p>
+
+      <h1>
+        Find the right AI tools <span class="accent">fast</span> — without the overwhelm.
+      </h1>
+
+      <p class="subhead">
+        Tell us what you’re trying to accomplish. Praxis ranks your best-fit AI tools (top 3–5),
+        explains why they match, and surfaces trust signals like privacy, ownership, and model transparency.
+      </p>
+
+      <p class="aspiration">
+        Stop guessing. Start adopting AI with confidence.
+      </p>
+
+      <!-- CTA -->
+      <div class="cta-row" id="early-access">
+        <div class="cta-glow">
+          <div class="form native-cta">
+            <div class="native-cta-left">
+              <span class="native-label">Get early access</span>
+              <span class="native-sub">Join the waitlist — we’ll invite testers in small waves.</span>
+              <span class="native-note">One simple step. No double entry.</span>
+            </div>
+
+            <button class="native-button" id="openBeehiivMain">
+              Join the waitlist <span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="fineprint">
+          Low pressure. We’ll only email launch updates + early invites.
+        </p>
+
+        <p class="micro-proof">
+          Built from direct interviews with cybersecurity leaders and small business owners.
+        </p>
+      </div>
+
+      <!-- Proof pills -->
+      <div class="proof">
+        <div class="proof-item">
+          <span class="proof-num">Top 3–5</span>
+          <span class="proof-label">ranked matches</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">Transparent</span>
+          <span class="proof-label">privacy + ownership signals</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">Stack-ready</span>
+          <span class="proof-label">tools that work together</span>
+        </div>
+      </div>
+
+      <!-- Trust Panel -->
+      <section class="trust">
+        <h2>A Trust Layer for AI Selection</h2>
+        <p class="trust-sub">
+          We’re building with security and clarity in mind. Here’s what we’re prioritizing as we roll out early access.
+        </p>
+
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-badge ok">Privacy Snapshot</div>
+            <p>Visibility into vendor data handling (storage, retention, training use) when available.</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-badge ok">Ownership Flag</div>
+            <p>Show vendor origin when available (🇺🇸 U.S.-owned / 🌍 foreign / ❓ unknown).</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-badge warn">Query Recording</div>
+            <p>We’ll indicate whether tools may log prompts and what controls exist (if disclosed).</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-badge warn">Model Transparency</div>
+            <p>When possible, note underlying AI dependencies (model/provider powering the tool).</p>
+          </div>
+        </div>
+
+        <p class="trust-foot">
+          Early access starts simple. Trust signals expand as we validate vendor policies over time.
+        </p>
+      </section>
+
+    </section>
+
+    <!-- Feature Cards -->
+    <section class="grid">
+      <article class="card">
+        <h3>Ranked recommendations</h3>
+        <p>Get a fit score out of 10 and a short, clear explanation — no giant lists.</p>
+        <ul>
+          <li>Top matches only</li>
+          <li>“Why this fits” explanation</li>
+          <li>Faster decisions</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Trust layer</h3>
+        <p>Surface what matters: data handling, transparency, and ownership signals.</p>
+        <ul>
+          <li>Privacy snapshot</li>
+          <li>Ownership flags</li>
+          <li>Risk-aware notes</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Stacks & workflows</h3>
+        <p>Not just one tool — suggested combos and simple workflows you can adopt quickly.</p>
+        <ul>
+          <li>Integration-aware suggestions</li>
+          <li>Workflow sequences</li>
+          <li>Adoption-friendly</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2>Quick questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Is this free?</h4>
+          <p>Early access is free while we gather feedback and refine the experience.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I need to be “good at AI”?</h4>
+          <p>No — the point is making tool selection simple and practical.</p>
+        </div>
+        <div class="faq-item">
+          <h4>When do you launch?</h4>
+          <p>We’re onboarding early testers in waves. Join the waitlist for an invite.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Praxis. Early access program.</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL: Beehiiv only email field -->
+  <div class="modal" id="beehiivModal" aria-hidden="true">
+    <div class="modal-backdrop" id="closeBeehiivBackdrop"></div>
+
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-top">
+        <div>
+          <div class="modal-title" id="modalTitle">Join the waitlist</div>
+          <div class="modal-sub">One step — enter your email below.</div>
+        </div>
+        <button class="modal-x" id="closeBeehiivX" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+        <iframe
+          src="https://subscribe-forms.beehiiv.com/026759bf-f459-470f-9e52-20edba854003"
+          class="beehiiv-embed"
+          frameborder="0"
+          scrolling="no">
+        </iframe>
+
+        <p class="submission-note">
+          After subscribing, you may be redirected automatically (or you can close this window).
+        </p>
+
+        <div class="modal-foot">
+          <a class="pill" href="thanks.html">Already subscribed? Continue →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const modal = document.getElementById("beehiivModal");
+    const openMain = document.getElementById("openBeehiivMain");
+    const openTop = document.getElementById("openBeehiivTop");
+    const closeX = document.getElementById("closeBeehiivX");
+    const closeBackdrop = document.getElementById("closeBeehiivBackdrop");
+
+    function openModal(){
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }
+    function closeModal(){
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+    }
+
+    openMain.addEventListener("click", openModal);
+    openTop.addEventListener("click", openModal);
+    closeX.addEventListener("click", closeModal);
+    closeBackdrop.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
+  </script>
+
+</body>
+</html>
