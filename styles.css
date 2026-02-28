@@ -375,8 +375,7 @@ h1{
   display: block;
   width: 100% !important;
   max-width: 100% !important;
-  min-height: 340px !important;
-  height: 340px !important;
+  height: 520px !important;
   border: 0 !important;
   border-radius: 14px !important;
   background: transparent !important;
@@ -414,16 +413,20 @@ h1{
     overflow: hidden;
     display: flex;
     justify-content: center; 
+
+    height: 340px;
 }
   .beehiiv-embed{ 
     width: 640px !important;
     max-width: none !important;
     
     height: 520px !important;
-    min-height: 520px !important;
+    min-height: 0 !important;
     
     transform: scale(0.62);
     transform-origin: top center;
+
+    border-radius: 14px !important;
 }
 }
 
