@@ -375,7 +375,7 @@ h1{
   display: block;
   width: 100% !important;
   max-width: 100% !important;
-  height: 520px !important;
+  height: clamp(420px, 55vh, 620px) !important;
   border: 0 !important;
   border-radius: 14px !important;
   background: transparent !important;
@@ -411,22 +411,14 @@ h1{
     padding: 10px;
     border-radius: 14px;
     overflow: hidden;
-    display: flex;
-    justify-content: center; 
-
-    height: 340px;
 }
   .beehiiv-embed{ 
-    width: 640px !important;
-    max-width: none !important;
-    
-    height: 520px !important;
-    min-height: 0 !important;
-    
-    transform: scale(0.62);
-    transform-origin: top center;
-
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(460px, 62vh, 720px) !important;
     border-radius: 14px !important;
+    transform: none !important;
 }
 }
 
