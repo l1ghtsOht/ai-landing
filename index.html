@@ -189,13 +189,17 @@
       </div>
 
       <div class="modal-body">
-        <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-        <iframe
-          src="https://subscribe-forms.beehiiv.com/026759bf-f459-470f-9e52-20edba854003"
-          class="beehiiv-embed"
-          frameborder="0"
-          scrolling="no">
-        </iframe>
+        <!-- Added wrapper to prevent mobile crop + enforce responsive width -->
+        <div class="beehiiv-wrap">
+          <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+          <iframe
+            src="https://subscribe-forms.beehiiv.com/026759bf-f459-470f-9e52-20edba854003"
+            class="beehiiv-embed"
+            frameborder="0"
+            scrolling="no"
+            title="Praxis Early Access"
+          ></iframe>
+        </div>
 
         <p class="submission-note">
           After subscribing, you may be redirected automatically (or you can close this window).

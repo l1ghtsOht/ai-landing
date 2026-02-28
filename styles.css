@@ -359,13 +359,27 @@ h1{
   padding: 14px 16px 16px;
 }
 
-/* Beehiiv embed inside modal */
-.beehiiv-embed{
+/* Beehiiv embed inside modal (responsive + no mobile crop) */
+.beehiiv-wrap{
   width: 100%;
-  height: 240px;
-  border: 0;
-  border-radius: 14px;
-  background: transparent;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.beehiiv-embed{
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 240px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .submission-note{
@@ -386,12 +400,16 @@ h1{
   .faq-grid{ grid-template-columns: 1fr; }
   .trust-grid{ grid-template-columns: 1fr; }
 }
+
 @media (max-width: 600px){
   .native-cta{ flex-direction: column; align-items: stretch; }
   .native-button{ width: 100%; }
   .modal-card{ margin-top: 8vh; }
-  .beehiiv-embed{ height: 260px; }
+
+  .beehiiv-wrap{ padding: 10px; border-radius: 14px; }
+  .beehiiv-embed{ height: 300px !important; }
 }
+
 /* THANK YOU PAGE */
 .link-reset{
   color: inherit;
