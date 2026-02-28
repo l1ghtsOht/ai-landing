@@ -424,8 +424,8 @@ h1{
     display: block;
     width: 100% !important;
     max-width: 100% !important;
-    height: 400px !important;
-    min-height: 400px !important;
+    height: 350px !important;
+    min-height: 350px !important;
     transform: none !important;
 }
 }
