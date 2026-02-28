@@ -366,7 +366,7 @@ h1{
   margin: 0 auto;
   padding: 12px;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.12);
 }
@@ -375,7 +375,8 @@ h1{
   display: block;
   width: 100% !important;
   max-width: 100% !important;
-  height: 240px !important;
+  min-height: 340px !important;
+  height: 340px !important;
   border: 0 !important;
   border-radius: 14px !important;
   background: transparent !important;
@@ -406,8 +407,14 @@ h1{
   .native-button{ width: 100%; }
   .modal-card{ margin-top: 8vh; }
 
-  .beehiiv-wrap{ padding: 10px; border-radius: 14px; }
-  .beehiiv-embed{ height: 300px !important; }
+  .beehiiv-wrap{ 
+    padding: 12px; 
+    border-radius: 14px; 
+}
+  .beehiiv-embed{ 
+    height: 380px !important;
+    min-height: 380px !important; 
+}
 }
 
 /* THANK YOU PAGE */
