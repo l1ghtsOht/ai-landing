@@ -366,7 +366,7 @@ h1{
   margin: 0 auto;
   padding: 12px;
   border-radius: 16px;
-  overflow: visible;
+  overflow: hidden;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.12);
 }
@@ -408,12 +408,22 @@ h1{
   .modal-card{ margin-top: 8vh; }
 
   .beehiiv-wrap{ 
-    padding: 12px; 
-    border-radius: 14px; 
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; 
 }
   .beehiiv-embed{ 
-    height: 380px !important;
-    min-height: 380px !important; 
+    width: 640px !important;
+    max-width: none !important;
+    
+    height: 520px !important;
+    min-height: 520px !important;
+    
+    transform: scale(0.62);
+    transform-origin: top center;
 }
 }
 
