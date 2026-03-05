@@ -1,4 +1,3 @@
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -351,8 +350,6 @@ async function handleSubmit(source) {
     if (!res.ok) throw new Error('Form submission failed');
 
     // Success — show thank you page
-    spotsLeft = Math.max(1, spotsLeft - 1);
-    updateSpots();
     showThankYouPage();
 
   } catch (err) {
