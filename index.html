@@ -1,246 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Praxis — Early Access</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praxis — Find AI tools you can actually trust</title>
+  <meta name="description" content="Praxis ranks your top 3–5 AI tool matches with trust signals built in. Built for small business owners who don't have time to guess.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       CSS VARIABLES & RESET
+       ═══════════════════════════════════════ */
+    :root {
+      --bg: #08090c;
+      --surface: #0f1117;
+      --surface-alt: #141620;
+      --border: #1e2130;
+      --accent: #f97316;
+      --accent-glow: rgba(249,115,22,0.15);
+      --accent-soft: rgba(249,115,22,0.08);
+      --green: #22c55e;
+      --green-soft: rgba(34,197,94,0.1);
+      --text: #e4e2dd;
+      --text-muted: #7c7a73;
+      --text-dim: #4a4940;
+      --white: #faf9f6;
+      --font: 'DM Sans', 'Helvetica Neue', sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    ::selection { background: rgba(249,115,22,0.25); color: #fff; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    a { color: inherit; text-decoration: none; }
+    input::placeholder { color: #5a5850; }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════ */
+    @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:.4 } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes gradientMove { 0% { background-position: 0% 50% } 50% { background-position: 100% 50% } 100% { background-position: 0% 50% } }
+    @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .fade-up-1 { animation: fadeUp 0.6s ease 0.1s both; }
+    .fade-up-2 { animation: fadeUp 0.6s ease 0.2s both; }
+    .fade-up-3 { animation: fadeUp 0.6s ease 0.3s both; }
+
+    /* ═══════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(8,9,12,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom-color: var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #0a0a0a;
+    }
+    .nav-logo-text { font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+    .nav-badge {
+      font-size: 10px; font-family: var(--font-mono);
+      padding: 3px 8px; border-radius: 20px;
+      background: var(--accent-soft); color: var(--accent); font-weight: 600;
+    }
+    .nav-wave { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
+
+    /* ═══════════════════════════════════════
+       SECTION TAG (reusable)
+       ═══════════════════════════════════════ */
+    .section-tag {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--accent); font-weight: 600; letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-serif); font-weight: 400; line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 44px;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 120px 24px 80px; position: relative;
+    }
+    .hero-glow {
+      position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 30px;
+      background: var(--accent-soft); border: 1px solid rgba(249,115,22,0.15);
+      font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 6vw, 72px); font-weight: 400;
+      line-height: 1.08; letter-spacing: -0.03em;
+      max-width: 820px; margin-bottom: 24px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent), #fbbf24, var(--accent));
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 4s ease infinite;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px); line-height: 1.7; color: var(--text-muted);
+      max-width: 580px; margin-bottom: 44px;
+    }
+    .hero p strong { color: var(--text); }
+
+    /* ═══════════════════════════════════════
+       EMAIL FORM
+       ═══════════════════════════════════════ */
+    .email-form { max-width: 460px; width: 100%; }
+    .email-form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+    .email-input {
+      flex: 1; padding: 16px 18px; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--white); font-size: 15px; font-family: var(--font);
+      outline: none; transition: border 0.2s;
+    }
+    .email-input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+    .email-input.dark-bg { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+    .email-input.dark-bg:focus { border-color: var(--accent); }
+    .email-input.error { border-color: rgba(239,68,68,0.5); }
+    .submit-btn {
+      padding: 16px 28px; border-radius: 10px; border: none;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      color: #0a0a0a; font-size: 15px; font-weight: 700; cursor: pointer;
+      font-family: var(--font); white-space: nowrap;
+      box-shadow: 0 0 30px var(--accent-glow);
+      transition: all 0.15s;
+      min-width: 165px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 0 40px rgba(249,115,22,0.3); }
+    .submit-btn:disabled { background: var(--surface); color: var(--text-muted); cursor: wait; box-shadow: none; transform: none; }
+    .submit-spinner {
+      width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 0.6s linear infinite; flex-shrink: 0;
+    }
+    .form-status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: blink 2s ease-in-out infinite;
+    }
+    .form-status strong { color: var(--accent); }
+    .form-error { font-size: 13px; color: #ef4444; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .demo-banner {
+      margin-bottom: 12px; padding: 8px 14px; border-radius: 8px;
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);
+      font-size: 12px; color: #fbbf24; font-family: var(--font-mono);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .success-box {
+      padding: 24px 28px; border-radius: 12px;
+      background: var(--green-soft); border: 1px solid rgba(34,197,94,0.2);
+      text-align: center; animation: fadeUp 0.4s ease;
+    }
+    .success-box .check { font-size: 28px; margin-bottom: 8px; }
+    .success-box .title { font-size: 17px; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+    .success-box .desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       STATS BAR
+       ═══════════════════════════════════════ */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      padding: 32px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-serif); font-size: 32px; font-weight: 400; color: var(--white); margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: var(--text-muted); }
+
+    /* ═══════════════════════════════════════
+       CONTENT SECTIONS
+       ═══════════════════════════════════════ */
+    .section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+    .section.problem { padding-top: 100px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .flex-3 { display: flex; gap: 20px; }
+    .flex-3 > * { flex: 1; }
+
+    .card {
+      background: var(--surface); border-radius: 16px; padding: 28px;
+      border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: rgba(249,115,22,0.3); transform: translateY(-2px); }
+    .card-icon { font-size: 28px; margin-bottom: 16px; }
+    .card-title { font-size: 17px; font-weight: 600; margin-bottom: 10px; color: var(--white); }
+    .card-desc { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+
+    /* Differentiator columns */
+    .diff-col { border-radius: 16px; padding: 28px; }
+    .diff-col.old { background: var(--surface); border: 1px solid var(--border); }
+    .diff-col.new { background: var(--accent-soft); border: 1px solid rgba(249,115,22,0.2); }
+    .diff-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 20px; }
+    .diff-tag.old { color: var(--text-muted); }
+    .diff-tag.new { color: var(--accent); }
+    .diff-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 14px; line-height: 1.6; }
+    .diff-item.old { color: var(--text-muted); }
+    .diff-item.new { color: var(--text); }
+    .diff-icon.old { color: var(--text-dim); flex-shrink: 0; margin-top: 3px; }
+    .diff-icon.new { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+
+    /* Trust cards */
+    .trust-card {
+      background: var(--surface); border-radius: 14px; padding: 24px;
+      border: 1px solid var(--border); display: flex; gap: 16px; align-items: flex-start;
+    }
+    .trust-icon-box {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--accent-soft); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .trust-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--white); }
+    .trust-desc { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+
+    /* Quotes */
+    .quote-card {
+      background: var(--surface); border-radius: 14px; padding: 24px;
+      border: 1px solid var(--border); display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+    .quote-mark { font-size: 44px; line-height: 1; color: var(--accent); font-family: var(--font-serif); margin-bottom: 12px; opacity: 0.6; }
+    .quote-text { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 16px; font-style: italic; }
+    .quote-who { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+    /* Steps */
+    .step-card {
+      flex: 1; position: relative; padding: 28px 24px;
+      background: var(--surface); border-radius: 14px; border: 1px solid var(--border);
+    }
+    .step-num {
+      font-family: var(--font-serif); font-size: 56px; font-weight: 400;
+      color: var(--accent-soft); position: absolute; top: 16px; right: 20px; line-height: 1;
+    }
+    .step-title { font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--white); position: relative; }
+    .step-desc { font-size: 14px; line-height: 1.7; color: var(--text-muted); position: relative; }
+
+    /* FAQ */
+    .faq-section { padding: 80px 24px; max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-btn {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      background: transparent; border: none; color: var(--white);
+      font-size: 16px; font-weight: 500; cursor: pointer;
+      font-family: var(--font); text-align: left; padding: 0;
+    }
+    .faq-toggle { font-size: 20px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0; margin-left: 16px; }
+    .faq-toggle.open { transform: rotate(45deg); }
+    .faq-answer { margin-top: 12px; font-size: 14px; line-height: 1.7; color: var(--text-muted); animation: fadeUp 0.2s ease; display: none; }
+    .faq-answer.open { display: block; }
+
+    /* Final CTA */
+    .cta-section {
+      padding: 100px 24px 120px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; position: relative;
+    }
+    .cta-glow {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-fine-print {
+      margin-top: 48px; display: flex; gap: 32px; font-size: 13px;
+      color: var(--text-dim); font-family: var(--font-mono);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border); padding: 28px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #0a0a0a;
+    }
+    .footer-copyright { font-size: 13px; color: var(--text-muted); }
+    .footer-url { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav { padding: 14px 18px; }
+      .nav-wave { display: none; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .grid-3, .grid-2, .flex-3 { grid-template-columns: 1fr; display: grid; }
+      .hero { padding: 100px 18px 60px; }
+      .email-form-row { flex-direction: column; }
+      .submit-btn { width: 100%; }
+      .cta-fine-print { flex-direction: column; gap: 8px; align-items: center; }
+      .footer { flex-direction: column; gap: 12px; }
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- Background accents -->
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
+<!-- ═══════════════════════════════════════
+     NAV
+     ═══════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">P</div>
+    <span class="nav-logo-text">Praxis</span>
+    <span class="nav-badge">INVITE ONLY</span>
+  </div>
+  <div class="nav-wave">WAVE 03 · <span id="nav-spots">7</span> SPOTS</div>
+</nav>
 
-  <main class="wrap">
+<!-- ═══════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-chip fade-up">
+    <span style="font-size:10px">●</span>
+    Built from interviews with cybersecurity leaders &amp; SMB owners
+  </div>
+  <h1 class="fade-up-1">
+    Stop guessing which AI tools<br>
+    <span class="gradient-text">you can actually trust.</span>
+  </h1>
+  <p class="fade-up-2">
+    Praxis is the first AI advisor that <strong>vets tools for security and trust</strong> before recommending them. Tell us your goal — get your top 3–5 matches, with privacy and ownership signals built in.
+  </p>
+  <div class="fade-up-3">
+    <div class="email-form" id="form-hero"></div>
+  </div>
+</section>
 
-    <!-- Top bar -->
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">P</div>
-        <span class="brand-name">Praxis</span>
-      </div>
-      <button class="pill" id="openBeehiivTop">Join Early Access</button>
-    </header>
+<!-- ═══════════════════════════════════════
+     STATS
+     ═══════════════════════════════════════ -->
+<section class="stats-bar">
+  <div class="stat"><div class="stat-num">28,000+</div><div class="stat-label">AI tools exist today</div></div>
+  <div class="stat"><div class="stat-num">55%</div><div class="stat-label">of SMBs now use AI</div></div>
+  <div class="stat"><div class="stat-num">91%</div><div class="stat-label">report revenue growth</div></div>
+  <div class="stat"><div class="stat-num">3–5</div><div class="stat-label">vetted matches, not thousands</div></div>
+</section>
 
-    <!-- Hero -->
-    <section class="hero">
-      <p class="kicker">AI tool recommendations for small businesses</p>
-
-      <h1>
-        Find the right AI tools <span class="accent">fast</span> — without the overwhelm.
-      </h1>
-
-      <p class="subhead">
-        Tell us what you’re trying to accomplish. Praxis ranks your best-fit AI tools (top 3–5),
-        explains why they match, and surfaces trust signals like privacy, ownership, and model transparency.
-      </p>
-
-      <p class="aspiration">
-        Stop guessing. Start adopting AI with confidence.
-      </p>
-
-      <!-- CTA -->
-      <div class="cta-row" id="early-access">
-        <div class="cta-glow">
-          <div class="form native-cta">
-            <div class="native-cta-left">
-              <span class="native-label">Get early access</span>
-              <span class="native-sub">Join the waitlist — we’ll invite testers in small waves.</span>
-              <span class="native-note">One simple step. No double entry.</span>
-            </div>
-
-            <button class="native-button" id="openBeehiivMain">
-              Join the waitlist <span class="arrow">→</span>
-            </button>
-          </div>
-        </div>
-
-        <p class="fineprint">
-          Low pressure. We’ll only email launch updates + early invites.
-        </p>
-
-        <p class="micro-proof">
-          Built from direct interviews with cybersecurity leaders and small business owners.
-        </p>
-      </div>
-
-      <!-- Proof pills -->
-      <div class="proof">
-        <div class="proof-item">
-          <span class="proof-num">Top 3–5</span>
-          <span class="proof-label">ranked matches</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-num">Transparent</span>
-          <span class="proof-label">privacy + ownership signals</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-num">Stack-ready</span>
-          <span class="proof-label">tools that work together</span>
-        </div>
-      </div>
-
-      <!-- Trust Panel -->
-      <section class="trust">
-        <h2>A Trust Layer for AI Selection</h2>
-        <p class="trust-sub">
-          We’re building with security and clarity in mind. Here’s what we’re prioritizing as we roll out early access.
-        </p>
-
-        <div class="trust-grid">
-          <div class="trust-item">
-            <div class="trust-badge ok">Privacy Snapshot</div>
-            <p>Visibility into vendor data handling (storage, retention, training use) when available.</p>
-          </div>
-
-          <div class="trust-item">
-            <div class="trust-badge ok">Ownership Flag</div>
-            <p>Show vendor origin when available (🇺🇸 U.S.-owned / 🌍 foreign / ❓ unknown).</p>
-          </div>
-
-          <div class="trust-item">
-            <div class="trust-badge warn">Query Recording</div>
-            <p>We’ll indicate whether tools may log prompts and what controls exist (if disclosed).</p>
-          </div>
-
-          <div class="trust-item">
-            <div class="trust-badge warn">Model Transparency</div>
-            <p>When possible, note underlying AI dependencies (model/provider powering the tool).</p>
-          </div>
-        </div>
-
-        <p class="trust-foot">
-          Early access starts simple. Trust signals expand as we validate vendor policies over time.
-        </p>
-      </section>
-
-    </section>
-
-    <!-- Feature Cards -->
-    <section class="grid">
-      <article class="card">
-        <h3>Ranked recommendations</h3>
-        <p>Get a fit score out of 100 and a short, clear explanation — no giant lists.</p>
-        <ul>
-          <li>Top matches only</li>
-          <li>“Why this fits” explanation</li>
-          <li>Faster decisions</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>Trust layer</h3>
-        <p>Surface what matters: data handling, transparency, and ownership signals.</p>
-        <ul>
-          <li>Privacy snapshot</li>
-          <li>Ownership flags</li>
-          <li>Risk-aware notes</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>Stacks & workflows</h3>
-        <p>Not just one tool — suggested combos and simple workflows you can adopt quickly.</p>
-        <ul>
-          <li>Integration-aware suggestions</li>
-          <li>Workflow sequences</li>
-          <li>Adoption-friendly</li>
-        </ul>
-      </article>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-      <h2>Quick questions</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>Is this free?</h4>
-          <p>Early access is free while we gather feedback and refine the experience.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Do I need to be “good at AI”?</h4>
-          <p>No — the point is making tool selection simple and practical.</p>
-        </div>
-        <div class="faq-item">
-          <h4>When do you launch?</h4>
-          <p>We’re onboarding early testers in waves. Join the waitlist for an invite.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>© <span id="year"></span> Praxis. Early access program.</p>
-    </footer>
-
-  </main>
-
-  <!-- MODAL: Beehiiv only email field -->
-  <div class="modal" id="beehiivModal" aria-hidden="true">
-    <div class="modal-backdrop" id="closeBeehiivBackdrop"></div>
-
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-top">
-        <div>
-          <div class="modal-title" id="modalTitle">Join the waitlist</div>
-          <div class="modal-sub">One step — enter your email below.</div>
-        </div>
-        <button class="modal-x" id="closeBeehiivX" aria-label="Close">✕</button>
-      </div>
-
-      <div class="modal-body">
-        <!-- Added wrapper to prevent mobile crop + enforce responsive width -->
-        <div class="beehiiv-wrap">
-          <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-          <iframe
-            src="https://subscribe-forms.beehiiv.com/026759bf-f459-470f-9e52-20edba854003"
-            class="beehiiv-embed"
-            frameborder="0"
-            scrolling="no"
-            title="Praxis Early Access"
-          ></iframe>
-        </div>
-
-        <p class="submission-note">
-          After subscribing, you may be redirected automatically (or you can close this window).
-        </p>
-
-        <div class="modal-foot">
-          <a class="pill" href="thanks.html">Already subscribed? Continue →</a>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════
+     THE PROBLEM
+     ═══════════════════════════════════════ -->
+<section class="section problem">
+  <div class="section-tag">THE PROBLEM</div>
+  <h2 class="section-title" style="font-size:clamp(28px,4vw,44px); max-width:600px; margin-bottom:52px">
+    Every SMB guide says "use AI."<br>None of them say <em>which AI to trust.</em>
+  </h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">You're drowning in choices</div>
+      <div class="card-desc">28,000+ AI tools. Endless listicles. No one telling you which ones actually fit YOUR business.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <div class="card-title">Trust is an afterthought</div>
+      <div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or what model powers it.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧩</div>
+      <div class="card-title">Tools don't work together</div>
+      <div class="card-desc">You buy 5 subscriptions that overlap and none that integrate. Stack-building is a skill nobody teaches.</div>
     </div>
   </div>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<!-- ═══════════════════════════════════════
+     DIFFERENTIATOR
+     ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-tag">HOW PRAXIS IS DIFFERENT</div>
+  <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory. A trust-first AI advisor.</h2>
+  <div class="grid-2">
+    <div class="diff-col old">
+      <div class="diff-tag old">WHAT DIRECTORIES DO</div>
+      <div class="diff-item old"><span class="diff-icon old">✗</span><span>List 500+ tools with no context</span></div>
+      <div class="diff-item old"><span class="diff-icon old">✗</span><span>Show sponsored results first</span></div>
+      <div class="diff-item old"><span class="diff-icon old">✗</span><span>No vetting, no trust data</span></div>
+      <div class="diff-item old"><span class="diff-icon old">✗</span><span>You still have to figure it out</span></div>
+    </div>
+    <div class="diff-col new">
+      <div class="diff-tag new">WHAT PRAXIS DOES</div>
+      <div class="diff-item new"><span class="diff-icon new">✓</span><span>Ranks your top 3–5 matches with fit scores</span></div>
+      <div class="diff-item new"><span class="diff-icon new">✓</span><span>Surfaces privacy, ownership &amp; transparency signals</span></div>
+      <div class="diff-item new"><span class="diff-icon new">✓</span><span>Suggests stacks that work together</span></div>
+      <div class="diff-item new"><span class="diff-icon new">✓</span><span>Built from real SMB owner interviews</span></div>
+    </div>
+  </div>
+</section>
 
-    const modal = document.getElementById("beehiivModal");
-    const openMain = document.getElementById("openBeehiivMain");
-    const openTop = document.getElementById("openBeehiivTop");
-    const closeX = document.getElementById("closeBeehiivX");
-    const closeBackdrop = document.getElementById("closeBeehiivBackdrop");
+<!-- ═══════════════════════════════════════
+     TRUST LAYER
+     ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-tag">THE TRUST LAYER</div>
+  <h2 class="section-title" style="font-size:clamp(28px,4vw,40px); margin-bottom:12px">Every recommendation comes with receipts.</h2>
+  <p style="font-size:16px; color:var(--text-muted); margin-bottom:44px; max-width:540px; line-height:1.7">
+    We surface what other platforms hide — so you know exactly what you're adopting.
+  </p>
+  <div class="grid-2">
+    <div class="trust-card">
+      <div class="trust-icon-box">🛡️</div>
+      <div><div class="trust-title">Privacy Snapshot</div><div class="trust-desc">See how each vendor handles your data — storage, retention, and training use.</div></div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon-box">🏴</div>
+      <div><div class="trust-title">Ownership Flag</div><div class="trust-desc">Know where the tool is built. U.S.-owned, foreign, or unknown — disclosed upfront.</div></div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon-box">🔍</div>
+      <div><div class="trust-title">Query Recording</div><div class="trust-desc">Does the tool log your prompts? We surface what controls exist.</div></div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon-box">⚙️</div>
+      <div><div class="trust-title">Model Transparency</div><div class="trust-desc">What AI model powers the tool? We note dependencies when disclosed.</div></div>
+    </div>
+  </div>
+</section>
 
-    function openModal(){
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("no-scroll");
+<!-- ═══════════════════════════════════════
+     SOCIAL PROOF
+     ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-tag">FROM REAL BUSINESS OWNERS</div>
+  <div class="grid-3">
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">I wasted 3 months and $400 on AI tools that didn't fit my workflow. Wish I had this sooner.</p>
+      <div class="quote-who">— Landscaping business owner, TX</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">Security is everything in my industry. The trust layer alone makes this worth waiting for.</p>
+      <div class="quote-who">— Insurance agency, FL</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">I don't need 500 options. I need the 3 that work for a bakery with 4 employees.</p>
+      <div class="quote-who">— Bakery owner, OH</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     HOW IT WORKS
+     ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="section-tag">HOW IT WORKS</div>
+  <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Three steps. Zero overwhelm.</h2>
+  <div class="flex-3">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Describe your goal</div>
+      <div class="step-desc">"I need help with invoicing" or "I want to automate social media" — plain English, no jargon required.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">Get vetted matches</div>
+      <div class="step-desc">Praxis ranks your top 3–5 tools by fit score, with trust signals and a clear explanation of why each matches.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Adopt with confidence</div>
+      <div class="step-desc">See suggested stacks, understand the risks, and start using tools you've actually verified.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="section-tag">QUESTIONS</div>
+  <h2 class="section-title" style="font-size:32px; margin-bottom:36px">Before you ask</h2>
+
+  <div class="faq-item">
+    <button class="faq-btn" onclick="toggleFaq(this)">Is this actually free?<span class="faq-toggle">+</span></button>
+    <div class="faq-answer">Yes. Early access is completely free. We're gathering real feedback from real business owners before we ever charge a dime.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-btn" onclick="toggleFaq(this)">Do I need to know anything about AI?<span class="faq-toggle">+</span></button>
+    <div class="faq-answer">Not at all. Tell us what you're trying to accomplish in plain English. Praxis does the research, vetting, and matching for you.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button>
+    <div class="faq-answer">ChatGPT can suggest tools, but it can't vet them for trust, check data policies, or build you a stack that works together. Praxis is purpose-built for that job.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-btn" onclick="toggleFaq(this)">When do I get access?<span class="faq-toggle">+</span></button>
+    <div class="faq-answer">We're onboarding testers in small waves of 10–20. The earlier you join, the sooner you're in. Current wave is filling now.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-tag" style="margin-bottom:20px">INVITATION ONLY</div>
+  <h2 style="font-family:var(--font-serif); font-size:clamp(32px,5vw,52px); font-weight:400; line-height:1.1; letter-spacing:-0.02em; margin-bottom:16px; max-width:600px; position:relative">
+    Your AI stack should<br>work <em>for</em> you — not against you.
+  </h2>
+  <p style="font-size:17px; line-height:1.7; color:var(--text-muted); max-width:480px; margin-bottom:40px; position:relative">
+    Join early testers who are shaping how small businesses find, vet, and adopt AI — with trust built in from day one.
+  </p>
+  <div class="email-form" id="form-bottom"></div>
+  <div class="cta-fine-print">
+    <span>Free during early access</span>
+    <span>·</span>
+    <span>No credit card</span>
+    <span>·</span>
+    <span>Unsubscribe anytime</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">
+    <div class="footer-logo-icon">P</div>
+    <span class="footer-copyright">© Praxis 2026</span>
+  </div>
+  <div class="footer-url">aidashboard.co</div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT — Beehiiv Integration + Interactivity
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+/*
+ * ═══════════════════════════════════════════════════════════════
+ *  BEEHIIV CONFIGURATION — Update these two values
+ *  Find them in: Beehiiv Dashboard → Settings → Integrations
+ * ═══════════════════════════════════════════════════════════════
+ */
+const BEEHIIV_PUBLICATION_ID = "pub_9dd8b695-5a3d-4ae4-9abd-de834c1a2241";
+const BEEHIIV_API_KEY = "wtFBWGB57zJeMYaOUUahCQ9DaLFgeHt4kf6r586mthrTzk8SYXk1gKy4skyWZJFi";
+
+/*
+ *  HOW EMAILS FLOW:
+ *
+ *  [User clicks "Request Invite"]
+ *        ↓
+ *  [POST → Beehiiv API /v2/publications/{pub_id}/subscriptions]
+ *        ↓
+ *  [Email lands in your Beehiiv subscriber list]
+ *        ↓
+ *  [Tagged with utm_source: "praxis_landing" for tracking]
+ *        ↓
+ *  [Optional: Beehiiv sends welcome email automatically]
+ *
+ *  To set up:
+ *  1. Go to Beehiiv → Settings → Integrations
+ *  2. Copy your Publication ID (starts with pub_) ✓ DONE
+ *  3. Create a new API key → paste it above
+ *  4. (Optional) In Beehiiv → Automations, create a welcome
+ *     sequence triggered by "Add by API" for new subscribers
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+const IS_DEMO = !BEEHIIV_API_KEY;
+let spotsLeft = 7;
+let submitted = false;
+
+// ── Render both email forms ──
+function renderForms() {
+  document.getElementById('form-hero').innerHTML = buildFormHTML(false);
+  document.getElementById('form-bottom').innerHTML = buildFormHTML(true);
+}
+
+function buildFormHTML(isDark) {
+  if (submitted) {
+    return `
+      <div class="success-box">
+        <div class="check">✓</div>
+        <div class="title">You're on the list.</div>
+        <div class="desc">We're onboarding in small waves. You'll hear from us soon with your invite.</div>
+      </div>`;
+  }
+
+  const inputClass = isDark ? 'email-input dark-bg' : 'email-input';
+  return `
+    ${IS_DEMO ? '<div class="demo-banner"><span>⚡</span> Demo mode — set your Beehiiv API key to go live</div>' : ''}
+    <div class="email-form-row">
+      <input type="email" class="${inputClass}" placeholder="you@yourbusiness.com"
+             onkeydown="if(event.key==='Enter')handleSubmit()">
+      <button class="submit-btn" onclick="handleSubmit()">Request Invite →</button>
+    </div>
+    <div class="form-status">
+      <div class="status-dot"></div>
+      <span><strong>${spotsLeft} spots left</strong> in the current wave · No spam, ever</span>
+    </div>`;
+}
+
+// ── Handle form submission ──
+async function handleSubmit() {
+  const inputs = document.querySelectorAll('.email-input');
+  let email = '';
+  inputs.forEach(inp => { if (inp.value) email = inp.value.trim(); });
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    inputs.forEach(inp => inp.classList.add('error'));
+    return;
+  }
+
+  // Show loading state
+  const btns = document.querySelectorAll('.submit-btn');
+  btns.forEach(btn => {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="submit-spinner"></span> Joining…';
+  });
+  inputs.forEach(inp => { inp.disabled = true; inp.style.opacity = '0.6'; });
+
+  // ── DEMO MODE ──
+  if (IS_DEMO) {
+    await new Promise(r => setTimeout(r, 800));
+    submitted = true;
+    spotsLeft = Math.max(1, spotsLeft - 1);
+    updateSpots();
+    renderForms();
+    console.log(`[DEMO MODE] Would subscribe: ${email}`);
+    console.log('→ Set BEEHIIV_API_KEY to activate real subscriptions.');
+    return;
+  }
+
+  // ── LIVE MODE — Send to Beehiiv API ──
+  try {
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          reactivate_existing: true,
+          send_welcome_email: true,
+          utm_source: 'praxis_landing',
+          utm_medium: 'website',
+          utm_campaign: 'early_access_wave_03',
+          referring_site: 'https://aidashboard.co',
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || `Beehiiv returned ${res.status}`);
     }
-    function closeModal(){
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("no-scroll");
-    }
 
-    openMain.addEventListener("click", openModal);
-    openTop.addEventListener("click", openModal);
-    closeX.addEventListener("click", closeModal);
-    closeBackdrop.addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    submitted = true;
+    spotsLeft = Math.max(1, spotsLeft - 1);
+    updateSpots();
+    renderForms();
+  } catch (err) {
+    console.error('Beehiiv subscription error:', err);
+    // Show error and reset buttons
+    btns.forEach(btn => {
+      btn.disabled = false;
+      btn.innerHTML = 'Request Invite →';
     });
-  </script>
+    inputs.forEach(inp => { inp.disabled = false; inp.style.opacity = '1'; });
+    // Insert error message
+    const rows = document.querySelectorAll('.email-form-row');
+    rows.forEach(row => {
+      const existing = row.parentElement.querySelector('.form-error');
+      if (existing) existing.remove();
+      const err_div = document.createElement('div');
+      err_div.className = 'form-error';
+      err_div.innerHTML = '<span>✗</span> Something went wrong — please try again.';
+      row.after(err_div);
+    });
+  }
+}
+
+function updateSpots() {
+  const el = document.getElementById('nav-spots');
+  if (el) el.textContent = spotsLeft;
+}
+
+// ── FAQ toggle ──
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const toggle = btn.querySelector('.faq-toggle');
+  const isOpen = answer.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-toggle').forEach(t => t.classList.remove('open'));
+
+  if (!isOpen) {
+    answer.classList.add('open');
+    toggle.classList.add('open');
+  }
+}
+
+// ── Nav scroll effect ──
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Init ──
+renderForms();
+</script>
 
 </body>
 </html>
