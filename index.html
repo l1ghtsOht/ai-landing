@@ -1,3 +1,4 @@
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,10 +155,10 @@
   ═══════════════════════════════════════════════════════════════
 -->
 
-<!-- Hidden form for Netlify to detect at deploy time -->
-<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
-  <input name="email" type="email">
+<!-- This hidden form tells Netlify to create the "waitlist" form at deploy time -->
+<form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input name="bot-field">
+  <input name="email" type="email">
   <input name="source" type="hidden">
 </form>
 
@@ -337,6 +338,7 @@ async function handleSubmit(source) {
     // Submit to Netlify Forms
     const formData = new URLSearchParams();
     formData.append('form-name', 'waitlist');
+    formData.append('bot-field', '');
     formData.append('email', email);
     formData.append('source', source === 'hero' ? 'hero_form' : 'bottom_cta');
 
