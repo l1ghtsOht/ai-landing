@@ -133,28 +133,6 @@
 </head>
 <body>
 
-<!--
-  ═══════════════════════════════════════════════════════════════
-  NETLIFY FORMS — HOW IT WORKS
-  ═══════════════════════════════════════════════════════════════
-
-  This form uses Netlify Forms. There is NOTHING to configure.
-  Just push this file to your Netlify repo and it works.
-
-  Netlify automatically detects the form at deploy time,
-  captures every submission, and stores it in:
-    → Netlify Dashboard → Your site → Forms → waitlist
-
-  You'll also get email notifications for each signup.
-  To enable: Netlify Dashboard → Site settings → Forms → Notifications
-
-  To export emails later: Forms → waitlist → Download as CSV
-  You can import that CSV into Beehiiv, Mailchimp, or anything.
-
-  ═══════════════════════════════════════════════════════════════
--->
-
-<!-- This hidden form tells Netlify to create the "waitlist" form at deploy time -->
 <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input name="bot-field">
   <input name="email" type="email">
@@ -170,9 +148,9 @@
 <div id="main-page" class="page">
   <section class="hero">
     <div class="hero-glow"></div>
-    <div class="hero-chip fade-up"><span style="font-size:10px">●</span> Built from interviews with cybersecurity leaders &amp; SMB owners</div>
+    <div class="hero-chip fade-up"><span style="font-size:10px">●</span> Curated AI platform for small businesses</div>
     <h1 class="fade-up-1">Stop guessing which AI tools<br><span class="gradient-text">you can actually trust.</span></h1>
-    <p class="fade-up-2">Praxis is the first AI advisor that <strong>vets tools for security and trust</strong> before recommending them. Tell us your goal — get your top 3–5 matches, with privacy and ownership signals built in.</p>
+    <p class="fade-up-2">Praxis is a curated AI platform that <strong>vets tools for security and trust</strong>, recommends the right ones for your business, and lets you <strong>put them to work — all in one place.</strong></p>
     <div class="fade-up-3">
       <div class="email-form" id="form-hero">
         <div class="email-form-row">
@@ -185,40 +163,51 @@
   </section>
 
   <section class="stats-bar">
-    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Curated AI tools exist today</div></div>
-    <div class="stat"><div class="stat-num">55%</div><div class="stat-label">of SMBs now use AI</div></div>
-    <div class="stat"><div class="stat-num">91%</div><div class="stat-label">report revenue growth</div></div>
-    <div class="stat"><div class="stat-num">3–5</div><div class="stat-label">vetted matches, not thousands</div></div>
+    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">AI tools hand-vetted</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Industry verticals covered</div></div>
+    <div class="stat"><div class="stat-num">3–5</div><div class="stat-label">Vetted matches per search</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Platform to search, vet &amp; build</div></div>
   </section>
 
   <section class="section problem">
     <div class="section-tag">THE PROBLEM</div>
     <h2 class="section-title" style="font-size:clamp(28px,4vw,44px);max-width:600px;margin-bottom:52px">Every SMB guide says "use AI."<br>None of them say <em>which AI to trust.</em></h2>
     <div class="grid-3">
-      <div class="card"><div class="card-icon">🔍</div><div class="card-title">You're drowning in choices</div><div class="card-desc">28,000+ AI tools. Endless listicles. No one telling you which ones actually fit YOUR business.</div></div>
-      <div class="card"><div class="card-icon">🔒</div><div class="card-title">Trust is an afterthought</div><div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or what model powers it.</div></div>
-      <div class="card"><div class="card-icon">🧩</div><div class="card-title">Tools don't work together</div><div class="card-desc">You buy 5 subscriptions that overlap and none that integrate. Stack-building is a skill nobody teaches.</div></div>
+      <div class="card"><div class="card-icon">🔍</div><div class="card-title">You're drowning in choices</div><div class="card-desc">Thousands of AI tools. Endless listicles. No one telling you which ones actually fit YOUR business, budget, and skill level.</div></div>
+      <div class="card"><div class="card-icon">🔒</div><div class="card-title">Trust is an afterthought</div><div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or whether it trains on your inputs.</div></div>
+      <div class="card"><div class="card-icon">🧩</div><div class="card-title">Recommendations stop at a list</div><div class="card-desc">You get a list. Then you're on your own. No one helps you actually set up, integrate, or use the tools together.</div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-tag">HOW PRAXIS IS DIFFERENT</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory. A trust-first AI advisor.</h2>
+    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory.<br>A curated AI platform you can work inside.</h2>
     <div class="grid-2">
-      <div class="diff-col old"><div class="diff-tag old">WHAT DIRECTORIES DO</div><div class="diff-item old"><span class="diff-icon old">✗</span><span>List 500+ tools with no context</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>Show sponsored results first</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>No vetting, no trust data</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>You still have to figure it out</span></div></div>
-      <div class="diff-col new"><div class="diff-tag new">WHAT PRAXIS DOES</div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Ranks your top 3–5 matches with fit scores</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Surfaces privacy, ownership &amp; transparency signals</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Suggests stacks that work together</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Built from real SMB owner interviews</span></div></div>
+      <div class="diff-col old"><div class="diff-tag old">WHAT DIRECTORIES DO</div><div class="diff-item old"><span class="diff-icon old">✗</span><span>List hundreds of tools with no context</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>Sponsored results ranked by ad spend</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>No vetting, no trust data, no data practice disclosure</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>You still have to figure everything out alone</span></div></div>
+      <div class="diff-col new"><div class="diff-tag new">WHAT PRAXIS DOES</div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Curated catalog — not every tool gets in</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Ranked by fit, with privacy and ownership signals</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Builds tool stacks that actually work together</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Complete tasks on-platform — don't just browse, build</span></div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-tag">THE TRUST LAYER</div>
     <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px">Every recommendation comes with receipts.</h2>
-    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:540px;line-height:1.7">We surface what other platforms hide — so you know exactly what you're adopting.</p>
+    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:540px;line-height:1.7">We surface what other platforms hide — so you know exactly what you're adopting before you commit.</p>
     <div class="grid-2">
-      <div class="trust-card"><div class="trust-icon-box">🛡️</div><div><div class="trust-title">Privacy Snapshot</div><div class="trust-desc">See how each vendor handles your data — storage, retention, and training use.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">🏴</div><div><div class="trust-title">Ownership Flag</div><div class="trust-desc">Know where the tool is built. U.S.-owned, foreign, or unknown — disclosed upfront.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">🔍</div><div><div class="trust-title">Query Recording</div><div class="trust-desc">Does the tool log your prompts? We surface what controls exist.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">⚙️</div><div><div class="trust-title">Model Transparency</div><div class="trust-desc">What AI model powers the tool? We note dependencies when disclosed.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">🛡️</div><div><div class="trust-title">Data Practice Transparency</div><div class="trust-desc">See how each vendor handles your data — storage, retention, and whether they train on your inputs.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">🏴</div><div><div class="trust-title">Ownership &amp; Sovereignty</div><div class="trust-desc">Know where the tool is built and who controls it. US-owned, allied, or foreign-backed — disclosed upfront.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">📋</div><div><div class="trust-title">Compliance Verification</div><div class="trust-desc">SOC2, GDPR, HIPAA — we check what's certified and surface it so you don't have to dig through vendor docs.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">⚖️</div><div><div class="trust-title">Lock-In &amp; Portability</div><div class="trust-desc">How easy is it to leave? We assess vendor lock-in risk and data portability before recommending any tool.</div></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-tag">THE ECOSYSTEM</div>
+    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px">Don't just find tools. Use them.</h2>
+    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:580px;line-height:1.7">Praxis doesn't stop at a recommendation. Our AI ecosystem lets you complete real tasks on-platform — with multiple AI models collaborating on your project, guided by the tools we've vetted for you.</p>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">💬</div><div class="card-title">Describe what you need</div><div class="card-desc">"Build a content calendar for my HVAC business" or "Set up automated lead routing" — in plain English.</div></div>
+      <div class="card"><div class="card-icon">🤖</div><div class="card-title">AI models work together</div><div class="card-desc">Multiple AI models collaborate inside your session — one drafts, another critiques, a third refines. You get the best result, not just one model's guess.</div></div>
+      <div class="card"><div class="card-icon">🛠️</div><div class="card-title">Powered by vetted tools</div><div class="card-desc">Every tool in the workflow has been curated for trust, pricing, and fit. You're building on a foundation we've already verified.</div></div>
     </div>
   </section>
 
@@ -236,18 +225,19 @@
     <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Three steps. Zero overwhelm.</h2>
     <div class="flex-3">
       <div class="step-card"><div class="step-num">01</div><div class="step-title">Describe your goal</div><div class="step-desc">"I need help with invoicing" or "I want to automate social media" — plain English, no jargon required.</div></div>
-      <div class="step-card"><div class="step-num">02</div><div class="step-title">Get vetted matches</div><div class="step-desc">Praxis ranks your top 3–5 tools by fit score, with trust signals and a clear explanation of why each matches.</div></div>
-      <div class="step-card"><div class="step-num">03</div><div class="step-title">Adopt with confidence</div><div class="step-desc">See suggested stacks, understand the risks, and start using tools you've actually verified.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title">Get vetted matches</div><div class="step-desc">Praxis ranks your top 3–5 tools by fit, with trust signals and a clear explanation of why each one was chosen.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title">Build on-platform</div><div class="step-desc">Activate your recommended tools inside Praxis. Our AI ecosystem helps you complete real tasks — not just browse results.</div></div>
     </div>
   </section>
 
   <section class="faq-section">
     <div class="section-tag">QUESTIONS</div>
     <h2 class="section-title" style="font-size:32px;margin-bottom:36px">Before you ask</h2>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Is this actually free?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Early access is completely free. We're gathering real feedback from real business owners before we ever charge a dime.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Is this actually free?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Early access is completely free. We're gathering real feedback from real business owners before finalizing pricing.</div></div>
     <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do I need to know anything about AI?<span class="faq-toggle">+</span></button><div class="faq-answer">Not at all. Tell us what you're trying to accomplish in plain English. Praxis does the research, vetting, and matching for you.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button><div class="faq-answer">ChatGPT can suggest tools, but it can't vet them for trust, check data policies, or build you a stack that works together. Praxis is purpose-built for that job.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">When do I get access?<span class="faq-toggle">+</span></button><div class="faq-answer">We're onboarding testers in small waves of 10–20. The earlier you join, the sooner you're in. Current wave is filling now.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button><div class="faq-answer">ChatGPT can suggest tools, but it can't vet them for trust, verify data policies, or build you an integrated stack. Praxis is purpose-built for that — and our ecosystem lets you actually use those tools on-platform, not just hear about them.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What kind of tools are in the catalog?<span class="faq-toggle">+</span></button><div class="faq-answer">Over 200 AI tools across writing, design, marketing, automation, analytics, coding, CRM, and more — each hand-vetted for pricing, compliance, integrations, and data practices. Not every tool gets in. That's the point.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">When do I get access?<span class="faq-toggle">+</span></button><div class="faq-answer">We're onboarding testers in small waves. The earlier you join, the sooner you're in. Current wave is filling now.</div></div>
   </section>
 
   <section class="cta-section">
@@ -291,50 +281,25 @@
   </section>
 </div>
 
-
 <script>
-/*
- * ═══════════════════════════════════════════════════════════════
- *  NETLIFY FORMS — ZERO CONFIG
- *
- *  There is nothing to configure here. Just push to Netlify.
- *
- *  Emails are submitted to Netlify Forms automatically.
- *  View them: Netlify Dashboard → Your site → Forms → "waitlist"
- *
- *  To get email notifications for each signup:
- *    Netlify → Site settings → Forms → Form notifications
- *    → Add "Email notification" → pick the "waitlist" form
- *
- *  To export all emails:
- *    Forms → waitlist → "Download as CSV"
- *    Then import into Beehiiv, Mailchimp, etc.
- * ═══════════════════════════════════════════════════════════════
- */
-
 let spotsLeft = 7;
 
 async function handleSubmit(source) {
   const input = document.getElementById('email-' + source);
   const email = input.value.trim();
 
-  // Validate
   if (!email || !email.includes('@') || !email.includes('.')) {
     input.classList.add('error');
     setTimeout(() => input.classList.remove('error'), 2000);
     return;
   }
 
-  // Show loading on ALL buttons
   const btns = document.querySelectorAll('.submit-btn');
   btns.forEach(b => { b.disabled = true; b.innerHTML = '<span class="submit-spinner"></span> Joining…'; });
   document.querySelectorAll('.email-input').forEach(i => { i.disabled = true; i.style.opacity = '0.6'; });
-
-  // Remove old errors
   document.querySelectorAll('.form-error').forEach(e => e.remove());
 
   try {
-    // Submit to Netlify Forms
     const formData = new URLSearchParams();
     formData.append('form-name', 'waitlist');
     formData.append('bot-field', '');
@@ -348,8 +313,6 @@ async function handleSubmit(source) {
     });
 
     if (!res.ok) throw new Error('Form submission failed');
-
-    // Success — show thank you page
     showThankYouPage();
 
   } catch (err) {
@@ -377,7 +340,6 @@ function showMainPage() {
   setTimeout(() => {
     t.classList.add('hidden'); t.classList.remove('fade-out'); m.classList.remove('hidden');
     window.scrollTo({top:0,behavior:'instant'});
-    // Reset forms
     document.querySelectorAll('.email-input').forEach(i => { i.value = ''; i.disabled = false; i.style.opacity = '1'; });
     document.querySelectorAll('.submit-btn').forEach(b => { b.disabled = false; b.innerHTML = 'Request Invite →'; });
     updateSpots();
