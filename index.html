@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Praxis — Find AI tools you can actually trust</title>
-  <meta name="description" content="Praxis eliminates the AI tools you shouldn't use — so you only see the ones you should. Curated for small businesses with full trust transparency.">
+  <title>Praxis — The AI elimination platform for small businesses</title>
+  <meta name="description" content="Praxis eliminates the AI tools you shouldn't use — so you only see the ones you should. Live now at praxis-ai.me. Curated for small businesses with full trust transparency.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -30,18 +30,20 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 20px var(--accent-glow)} 50%{box-shadow:0 0 40px rgba(249,115,22,.3)} }
     @keyframes checkPop { 0%{transform:scale(0);opacity:0} 50%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
     @keyframes confetti { 0%{transform:translateY(0) rotate(0);opacity:1} 100%{transform:translateY(120px) rotate(360deg);opacity:0} }
 
-    .fade-up{animation:fadeUp .6s ease both} .fade-up-1{animation:fadeUp .6s ease .1s both} .fade-up-2{animation:fadeUp .6s ease .2s both} .fade-up-3{animation:fadeUp .6s ease .3s both}
+    .fade-up{animation:fadeUp .6s ease both} .fade-up-1{animation:fadeUp .6s ease .1s both} .fade-up-2{animation:fadeUp .6s ease .2s both} .fade-up-3{animation:fadeUp .6s ease .3s both} .fade-up-4{animation:fadeUp .6s ease .4s both}
 
     .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;transition:all .3s;border-bottom:1px solid transparent}
     .nav.scrolled{background:rgba(8,9,12,0.85);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
     .nav-logo{display:flex;align-items:center;gap:12px}
     .nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#fb923c);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#0a0a0a}
     .nav-logo-text{font-weight:700;font-size:17px;letter-spacing:-.02em}
-    .nav-badge{font-size:10px;font-family:var(--font-mono);padding:3px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:600}
-    .nav-wave{font-size:13px;color:var(--text-muted);font-family:var(--font-mono)}
+    .nav-badge{font-size:10px;font-family:var(--font-mono);padding:3px 8px;border-radius:20px;background:var(--green-soft);color:var(--green);font-weight:600}
+    .nav-cta{padding:10px 22px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all .15s;text-decoration:none}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px var(--accent-glow)}
 
     .section-tag{font-family:var(--font-mono);font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.08em;margin-bottom:16px}
     .section-title{font-family:var(--font-serif);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:44px}
@@ -49,25 +51,30 @@
 
     .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
     .hero-glow{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.08) 0%,transparent 70%);pointer-events:none}
-    .hero-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;background:var(--accent-soft);border:1px solid rgba(249,115,22,.15);font-size:13px;color:var(--accent);font-weight:500;margin-bottom:32px}
+    .hero-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;background:var(--green-soft);border:1px solid rgba(34,197,94,.2);font-size:13px;color:var(--green);font-weight:500;margin-bottom:32px}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite}
     .hero h1{font-family:var(--font-serif);font-size:clamp(38px,6vw,72px);font-weight:400;line-height:1.08;letter-spacing:-.03em;max-width:820px;margin-bottom:24px}
     .hero h1 .gradient-text{background:linear-gradient(135deg,var(--accent),#fbbf24,var(--accent));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientMove 4s ease infinite}
     .hero p{font-size:clamp(16px,2vw,20px);line-height:1.7;color:var(--text-muted);max-width:580px;margin-bottom:44px} .hero p strong{color:var(--text)}
 
-    /* FORM */
+    .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center}
+    .btn-primary{padding:18px 36px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:17px;font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 0 30px var(--accent-glow);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:10px;animation:pulse 3s ease-in-out infinite}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(249,115,22,.35)}
+    .btn-secondary{padding:18px 36px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:17px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;text-decoration:none}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .hero-url{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);margin-top:16px}
+
     .email-form{max-width:460px;width:100%}
     .email-form-row{display:flex;gap:10px;margin-bottom:10px}
-    .email-input{flex:1;padding:16px 18px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--white);font-size:15px;font-family:var(--font);outline:none;transition:border .2s}
+    .email-input{flex:1;padding:16px 18px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--white);font-size:15px;font-family:var(--font);outline:none;transition:border .2s}
     .email-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
-    .email-input.dark-bg{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)} .email-input.dark-bg:focus{border-color:var(--accent)}
     .email-input.error{border-color:rgba(239,68,68,.5)!important}
-    .submit-btn{padding:16px 28px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap;box-shadow:0 0 30px var(--accent-glow);transition:all .15s;min-width:165px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .submit-btn{padding:16px 28px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap;box-shadow:0 0 30px var(--accent-glow);transition:all .15s;min-width:130px;display:flex;align-items:center;justify-content:center;gap:8px}
     .submit-btn:hover{transform:translateY(-1px);box-shadow:0 0 40px rgba(249,115,22,.3)}
     .submit-btn:disabled{background:var(--surface);color:var(--text-muted);cursor:wait;box-shadow:none;transform:none}
     .submit-spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0;display:inline-block}
     .form-status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted)}
     .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite}
-    .form-status strong{color:var(--accent)}
     .form-error{font-size:13px;color:#ef4444;margin-bottom:6px;display:flex;align-items:center;gap:6px}
 
     .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -86,28 +93,27 @@
     .trust-card{background:var(--surface);border-radius:14px;padding:24px;border:1px solid var(--border);display:flex;gap:16px;align-items:flex-start}
     .trust-icon-box{width:44px;height:44px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
     .trust-title{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--white)} .trust-desc{font-size:13px;line-height:1.65;color:var(--text-muted)}
-    .quote-card{background:var(--surface);border-radius:14px;padding:24px;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between}
-    .quote-mark{font-size:44px;line-height:1;color:var(--accent);font-family:var(--font-serif);margin-bottom:12px;opacity:.6}
-    .quote-text{font-size:14px;line-height:1.7;color:var(--text);margin-bottom:16px;font-style:italic} .quote-who{font-size:12px;color:var(--text-muted);font-family:var(--font-mono)}
     .step-card{flex:1;position:relative;padding:28px 24px;background:var(--surface);border-radius:14px;border:1px solid var(--border)}
     .step-num{font-family:var(--font-serif);font-size:56px;font-weight:400;color:var(--accent-soft);position:absolute;top:16px;right:20px;line-height:1}
     .step-title{font-size:16px;font-weight:600;margin-bottom:10px;color:var(--white);position:relative} .step-desc{font-size:14px;line-height:1.7;color:var(--text-muted);position:relative}
+
+    .eco-banner{background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(34,197,94,.04));border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:36px;text-align:center;margin-top:32px}
+    .eco-banner-tag{font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.08em;margin-bottom:12px}
+    .eco-banner h3{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);font-weight:400;margin-bottom:12px;color:var(--white)}
+    .eco-banner p{font-size:15px;line-height:1.7;color:var(--text-muted);max-width:540px;margin:0 auto}
+
     .faq-section{padding:80px 24px;max-width:680px;margin:0 auto} .faq-item{border-bottom:1px solid var(--border);padding:20px 0}
     .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:transparent;border:none;color:var(--white);font-size:16px;font-weight:500;cursor:pointer;font-family:var(--font);text-align:left;padding:0}
     .faq-toggle{font-size:20px;color:var(--text-muted);transition:transform .2s;flex-shrink:0;margin-left:16px} .faq-toggle.open{transform:rotate(45deg)}
     .faq-answer{margin-top:12px;font-size:14px;line-height:1.7;color:var(--text-muted);animation:fadeUp .2s ease;display:none} .faq-answer.open{display:block}
     .cta-section{padding:100px 24px 120px;text-align:center;display:flex;flex-direction:column;align-items:center;position:relative}
     .cta-glow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.06) 0%,transparent 70%);pointer-events:none}
-    .cta-fine-print{margin-top:48px;display:flex;gap:32px;font-size:13px;color:var(--text-dim);font-family:var(--font-mono)}
     .footer{border-top:1px solid var(--border);padding:28px 32px;display:flex;justify-content:space-between;align-items:center}
     .footer-logo{display:flex;align-items:center;gap:10px}
     .footer-logo-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#fb923c);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#0a0a0a}
     .footer-copyright{font-size:13px;color:var(--text-muted)} .footer-url{font-size:12px;color:var(--text-dim);font-family:var(--font-mono)}
 
-    /* PAGE TRANSITIONS */
     .page{transition:opacity .4s ease,transform .4s ease} .page.hidden{display:none} .page.fade-out{opacity:0;transform:translateY(-10px)}
-
-    /* THANK YOU */
     .thank-you-page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
     .thank-you-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.06) 0%,rgba(249,115,22,.04) 40%,transparent 70%);pointer-events:none}
     .thank-you-check{width:80px;height:80px;border-radius:50%;background:var(--green-soft);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:32px;animation:checkPop .5s ease .2s both}
@@ -122,12 +128,13 @@
     .confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:confetti 2s ease-out forwards}
     .back-btn{padding:16px 32px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;margin-bottom:16px}
     .back-btn:hover{border-color:var(--accent);color:var(--accent)}
-    .share-hint{font-size:13px;color:var(--text-dim);font-family:var(--font-mono)}
 
     @media(max-width:768px){
-      .nav{padding:14px 18px} .nav-wave{display:none} .stats-bar{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2){border-right:none}
-      .grid-3,.grid-2,.flex-3{grid-template-columns:1fr;display:grid} .hero{padding:100px 18px 60px} .email-form-row{flex-direction:column} .submit-btn{width:100%}
-      .cta-fine-print{flex-direction:column;gap:8px;align-items:center} .footer{flex-direction:column;gap:12px}
+      .nav{padding:14px 18px} .stats-bar{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2){border-right:none}
+      .grid-3,.grid-2,.flex-3{grid-template-columns:1fr;display:grid} .hero{padding:100px 18px 60px}
+      .cta-row{flex-direction:column;width:100%;max-width:400px} .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center}
+      .email-form-row{flex-direction:column} .submit-btn{width:100%}
+      .footer{flex-direction:column;gap:12px}
     }
   </style>
 </head>
@@ -140,144 +147,128 @@
 </form>
 
 <nav class="nav" id="nav">
-  <div class="nav-logo"><div class="nav-logo-icon">P</div><span class="nav-logo-text">Praxis</span><span class="nav-badge">LAUNCHING SOON</span></div>
-  <div class="nav-wave">aidashboard.co</div>
+  <div class="nav-logo"><div class="nav-logo-icon">P</div><span class="nav-logo-text">Praxis</span><span class="nav-badge">LIVE</span></div>
+  <a href="https://praxis-ai.me" class="nav-cta" target="_blank">Try Praxis Free &rarr;</a>
 </nav>
 
-<!-- ═══ PAGE 1: MAIN ═══ -->
 <div id="main-page" class="page">
   <section class="hero">
     <div class="hero-glow"></div>
-    <div class="hero-chip fade-up"><span style="font-size:10px">●</span> Elimination-first AI platform for small businesses</div>
+    <div class="hero-chip fade-up"><span class="live-dot"></span> Praxis is live &mdash; try it now</div>
     <h1 class="fade-up-1">Stop guessing which AI tools<br><span class="gradient-text">you can actually trust.</span></h1>
-    <p class="fade-up-2">Praxis doesn't recommend everything — it <strong>eliminates what doesn't fit</strong>, then shows you the survivors with full trust transparency. Search, vet, and adopt with confidence — <strong>all in one place.</strong></p>
-    <div class="fade-up-3">
-      <div class="email-form" id="form-hero">
-        <div class="email-form-row">
-          <input type="email" class="email-input" id="email-hero" placeholder="you@yourbusiness.com" onkeydown="if(event.key==='Enter'){event.preventDefault();handleSubmit('hero')}">
-          <button type="button" class="submit-btn" onclick="handleSubmit('hero')">Get Early Access →</button>
-        </div>
-        <div class="form-status"><div class="status-dot"></div><span>Launching this month · No spam, ever</span></div>
-      </div>
+    <p class="fade-up-2">Praxis doesn't recommend everything &mdash; it <strong>eliminates what doesn't fit</strong>, then shows you the survivors with full trust transparency. Free for small businesses.</p>
+    <div class="fade-up-3 cta-row">
+      <a href="https://praxis-ai.me" class="btn-primary" target="_blank">Try Praxis Now &rarr;</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
     </div>
+    <div class="hero-url fade-up-4">praxis-ai.me</div>
   </section>
 
   <section class="stats-bar">
     <div class="stat"><div class="stat-num">200+</div><div class="stat-label">AI tools hand-vetted</div></div>
     <div class="stat"><div class="stat-num">9</div><div class="stat-label">Industry verticals covered</div></div>
-    <div class="stat"><div class="stat-num">3–5</div><div class="stat-label">Vetted matches per search</div></div>
+    <div class="stat"><div class="stat-num">3&ndash;5</div><div class="stat-label">Vetted matches per search</div></div>
     <div class="stat"><div class="stat-num">1</div><div class="stat-label">Platform to search, vet &amp; adopt</div></div>
   </section>
 
   <section class="section problem">
     <div class="section-tag">THE PROBLEM</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,44px);max-width:600px;margin-bottom:52px">Every SMB guide says "use AI."<br>None of them say <em>which AI to trust.</em></h2>
+    <h2 class="section-title" style="font-size:clamp(28px,4vw,44px);max-width:600px;margin-bottom:52px">Every SMB guide says &ldquo;use AI.&rdquo;<br>None of them say <em>which AI to trust.</em></h2>
     <div class="grid-3">
-      <div class="card"><div class="card-icon">🔍</div><div class="card-title">You're drowning in choices</div><div class="card-desc">Thousands of AI tools. Endless listicles. No one telling you which ones actually fit YOUR business, budget, and skill level.</div></div>
-      <div class="card"><div class="card-icon">🔒</div><div class="card-title">Trust is an afterthought</div><div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or whether it trains on your inputs.</div></div>
-      <div class="card"><div class="card-icon">🧩</div><div class="card-title">Recommendations stop at a list</div><div class="card-desc">You get a list. Then you're on your own. No one helps you actually set up, integrate, or use the tools together.</div></div>
+      <div class="card"><div class="card-icon">&#x1F50D;</div><div class="card-title">You're drowning in choices</div><div class="card-desc">Thousands of AI tools. Endless listicles. No one telling you which ones actually fit YOUR business, budget, and skill level.</div></div>
+      <div class="card"><div class="card-icon">&#x1F512;</div><div class="card-title">Trust is an afterthought</div><div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or whether it trains on your inputs.</div></div>
+      <div class="card"><div class="card-icon">&#x1F9E9;</div><div class="card-title">Recommendations stop at a list</div><div class="card-desc">You get a list. Then you're on your own. No one helps you actually set up, integrate, or use the tools together.</div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-tag">HOW PRAXIS IS DIFFERENT</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory.<br>An elimination engine with full transparency.</h2>
+    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory.<br>An AI elimination platform with full transparency.</h2>
     <div class="grid-2">
-      <div class="diff-col old"><div class="diff-tag old">WHAT DIRECTORIES DO</div><div class="diff-item old"><span class="diff-icon old">✗</span><span>List hundreds of tools with no context</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>Sponsored results ranked by ad spend</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>No vetting, no trust data, no data practice disclosure</span></div><div class="diff-item old"><span class="diff-icon old">✗</span><span>You still have to figure everything out alone</span></div></div>
-      <div class="diff-col new"><div class="diff-tag new">WHAT PRAXIS DOES</div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Eliminates bad fits first — you see what was rejected and why</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Surfaces privacy, ownership &amp; trust signals on every tool</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>Builds stacks that work together — with role assignments</span></div><div class="diff-item new"><span class="diff-icon new">✓</span><span>AI ecosystem coming soon — complete tasks on-platform with vetted tools</span></div></div>
+      <div class="diff-col old"><div class="diff-tag old">WHAT DIRECTORIES DO</div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>List hundreds of tools with no context</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>Sponsored results ranked by ad spend</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>No vetting, no trust data, no data practice disclosure</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>You still have to figure everything out alone</span></div></div>
+      <div class="diff-col new"><div class="diff-tag new">WHAT PRAXIS DOES</div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Eliminates bad fits first &mdash; you see what was rejected and why</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Surfaces privacy, ownership &amp; trust signals on every tool</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Builds stacks that work together &mdash; with role assignments</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>AI ecosystem arriving soon &mdash; complete tasks on-platform with vetted tools</span></div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-tag">THE TRUST LAYER</div>
     <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px">Every recommendation comes with receipts.</h2>
-    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:540px;line-height:1.7">We surface what other platforms hide — so you know exactly what you're adopting before you commit.</p>
+    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:540px;line-height:1.7">We surface what other platforms hide &mdash; so you know exactly what you're adopting before you commit.</p>
     <div class="grid-2">
-      <div class="trust-card"><div class="trust-icon-box">🛡️</div><div><div class="trust-title">Data Practice Transparency</div><div class="trust-desc">See how each vendor handles your data — storage, retention, and whether they train on your inputs.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">🏴</div><div><div class="trust-title">Ownership &amp; Sovereignty</div><div class="trust-desc">Know where the tool is built and who controls it. US-owned, allied, or foreign-backed — disclosed upfront.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">📋</div><div><div class="trust-title">Compliance Verification</div><div class="trust-desc">SOC2, GDPR, HIPAA — we check what's certified and surface it so you don't have to dig through vendor docs.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">⚖️</div><div><div class="trust-title">Lock-In &amp; Portability</div><div class="trust-desc">How easy is it to leave? We assess vendor lock-in risk and data portability before recommending any tool.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">&#x1F6E1;&#xFE0F;</div><div><div class="trust-title">Data Practice Transparency</div><div class="trust-desc">See how each vendor handles your data &mdash; storage, retention, and whether they train on your inputs.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">&#x1F3F4;</div><div><div class="trust-title">Ownership &amp; Sovereignty</div><div class="trust-desc">Know where the tool is built and who controls it. US-owned, allied, or foreign-backed &mdash; disclosed upfront.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">&#x1F4CB;</div><div><div class="trust-title">Compliance Verification</div><div class="trust-desc">SOC2, GDPR, HIPAA &mdash; we check what's certified and surface it so you don't have to dig through vendor docs.</div></div></div>
+      <div class="trust-card"><div class="trust-icon-box">&#x2696;&#xFE0F;</div><div><div class="trust-title">Lock-In &amp; Portability</div><div class="trust-desc">How easy is it to leave? We assess vendor lock-in risk and data portability before recommending any tool.</div></div></div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-tag">THE ECOSYSTEM · COMING SOON</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px">Don't just find tools. Use them.</h2>
-    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:580px;line-height:1.7">We're building an AI ecosystem that goes beyond recommendations. Describe a task, and multiple AI models will collaborate on your project — powered exclusively by tools that passed elimination. Arriving shortly after launch.</p>
-    <div class="grid-3">
-      <div class="card"><div class="card-icon">💬</div><div class="card-title">Describe what you need</div><div class="card-desc">"Build a content calendar for my HVAC business" or "Set up automated lead routing" — in plain English.</div></div>
-      <div class="card"><div class="card-icon">🤖</div><div class="card-title">AI models work together</div><div class="card-desc">Multiple AI models collaborate inside your session — one drafts, another critiques, a third refines. You get the best result, not just one model's guess.</div></div>
-      <div class="card"><div class="card-icon">🛠️</div><div class="card-title">Powered by vetted tools</div><div class="card-desc">Every tool in the workflow has been curated for trust, pricing, and fit. You're building on a foundation we've already verified.</div></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-tag">FROM REAL BUSINESS OWNERS</div>
-    <div class="grid-3">
-      <div class="quote-card"><div class="quote-mark">"</div><p class="quote-text">I wasted 3 months and $400 on AI tools that didn't fit my workflow. Wish I had this sooner.</p><div class="quote-who">— Landscaping business owner, TX</div></div>
-      <div class="quote-card"><div class="quote-mark">"</div><p class="quote-text">Security is everything in my industry. The trust layer alone makes this worth waiting for.</p><div class="quote-who">— Insurance agency, FL</div></div>
-      <div class="quote-card"><div class="quote-mark">"</div><p class="quote-text">I don't need 500 options. I need the 3 that work for a bakery with 4 employees.</p><div class="quote-who">— Bakery owner, OH</div></div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="section" id="how-it-works">
     <div class="section-tag">HOW IT WORKS</div>
     <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Three steps. Zero overwhelm.</h2>
     <div class="flex-3">
-      <div class="step-card"><div class="step-num">01</div><div class="step-title">Describe your goal</div><div class="step-desc">"I need help with invoicing" or "I want to automate social media" — plain English, no jargon required.</div></div>
-      <div class="step-card"><div class="step-num">02</div><div class="step-title">Watch the elimination</div><div class="step-desc">Praxis evaluates the full catalog, eliminates everything that doesn't fit, and shows you exactly why each tool was kept or rejected. Full transparency.</div></div>
-      <div class="step-card"><div class="step-num">03</div><div class="step-title">Adopt with confidence</div><div class="step-desc">Every surviving tool comes with trust data, pricing transparency, and a fit explanation. You know exactly what you're adopting and why. No guesswork.</div></div>
+      <div class="step-card"><div class="step-num">01</div><div class="step-title">Describe your goal</div><div class="step-desc">&ldquo;I need help with invoicing&rdquo; or &ldquo;I want to automate social media&rdquo; &mdash; plain English, no jargon required.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title">Watch the elimination</div><div class="step-desc">Praxis evaluates the full catalog, eliminates everything that doesn't fit, and shows you exactly why each tool was kept or rejected.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title">Adopt with confidence</div><div class="step-desc">Every surviving tool comes with trust data, pricing transparency, and a fit explanation. You know exactly what you're adopting and why.</div></div>
+    </div>
+    <div class="eco-banner">
+      <div class="eco-banner-tag">COMING THIS WEEK</div>
+      <h3>The AI Ecosystem</h3>
+      <p>Don't just find tools &mdash; use them. Describe a task, and multiple AI models will collaborate on your project, powered exclusively by tools that passed elimination.</p>
     </div>
   </section>
 
   <section class="faq-section">
     <div class="section-tag">QUESTIONS</div>
     <h2 class="section-title" style="font-size:32px;margin-bottom:36px">Before you ask</h2>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Is this actually free?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Early access is completely free. We're gathering real feedback from real business owners before finalizing pricing.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do I need to know anything about AI?<span class="faq-toggle">+</span></button><div class="faq-answer">Not at all. Tell us what you're trying to accomplish in plain English. Praxis does the research, vetting, and matching for you.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button><div class="faq-answer">ChatGPT suggests tools from training data. It can't verify compliance, monitor trust, check data practices, or show you what was eliminated. Praxis starts with elimination — removing everything that doesn't meet your constraints — then explains every decision. And we're building an AI ecosystem that will let you act on those recommendations directly on-platform.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What kind of tools are in the catalog?<span class="faq-toggle">+</span></button><div class="faq-answer">Over 200 AI tools across writing, design, marketing, automation, analytics, coding, CRM, and more — each hand-vetted for pricing, compliance, integrations, and data practices. Not every tool gets in. That's the point.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">When do I get access?<span class="faq-toggle">+</span></button><div class="faq-answer">We're launching this month. Drop your email and you'll be notified the moment the platform goes live. Early users get free access and a direct line to our team.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Is this free?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Praxis is free for small businesses. Search, vet, and get recommendations at no cost. We're building a Pro tier with advanced features &mdash; but the core platform is and will remain free.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do I need to know anything about AI?<span class="faq-toggle">+</span></button><div class="faq-answer">Not at all. Tell Praxis what you're trying to accomplish in plain English. It does the research, vetting, and matching for you.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button><div class="faq-answer">ChatGPT suggests tools from training data. It can't verify compliance, check data practices, or show you what was eliminated. Praxis starts with elimination &mdash; removing everything that doesn't meet your constraints &mdash; then explains every decision with full transparency.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What kind of tools are in the catalog?<span class="faq-toggle">+</span></button><div class="faq-answer">Over 200 AI tools across writing, design, marketing, automation, analytics, coding, CRM, and more &mdash; each hand-vetted for pricing, compliance, integrations, and data practices. Not every tool gets in. That's the point.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What's the AI Ecosystem?<span class="faq-toggle">+</span></button><div class="faq-answer">A multi-model AI workspace arriving this week where you can describe a task and have multiple AI models collaborate on your project &mdash; powered exclusively by tools that survived our elimination process.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do you offer hands-on help?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Our Praxis Concierge service builds you a custom tool stack, written strategy, and guided setup. Contact us at aidashboard@gmail.com for details.</div></div>
   </section>
 
   <section class="cta-section">
     <div class="cta-glow"></div>
-    <div class="section-tag" style="margin-bottom:20px">BE FIRST IN</div>
-    <h2 style="font-family:var(--font-serif);font-size:clamp(32px,5vw,52px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;max-width:600px;position:relative">Your AI stack should<br>work <em>for</em> you — not against you.</h2>
-    <p style="font-size:17px;line-height:1.7;color:var(--text-muted);max-width:480px;margin-bottom:40px;position:relative">Join the first users who will see every AI tool decision explained — what survived, what was eliminated, and why. Launching this month.</p>
-    <div class="email-form" id="form-bottom">
-      <div class="email-form-row">
-        <input type="email" class="email-input dark-bg" id="email-bottom" placeholder="you@yourbusiness.com" onkeydown="if(event.key==='Enter'){event.preventDefault();handleSubmit('bottom')}">
-        <button type="button" class="submit-btn" onclick="handleSubmit('bottom')">Get Early Access →</button>
-      </div>
-      <div class="form-status"><div class="status-dot"></div><span>Launching this month · No spam, ever</span></div>
+    <div class="section-tag" style="margin-bottom:20px">PRAXIS IS LIVE</div>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(32px,5vw,52px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;max-width:600px;position:relative">Your AI stack should<br>work <em>for</em> you &mdash; not against you.</h2>
+    <p style="font-size:17px;line-height:1.7;color:var(--text-muted);max-width:480px;margin-bottom:40px;position:relative">See every AI tool decision explained &mdash; what survived, what was eliminated, and why. Free for small businesses.</p>
+    <div class="cta-row" style="margin-bottom:40px;position:relative">
+      <a href="https://praxis-ai.me" class="btn-primary" target="_blank">Try Praxis Now &rarr;</a>
     </div>
-    <div class="cta-fine-print"><span>Free to start</span><span>·</span><span>No credit card</span><span>·</span><span>Cancel anytime</span></div>
+    <div style="position:relative;max-width:460px;width:100%">
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Get updates on new features and the ecosystem launch:</p>
+      <div class="email-form" id="form-bottom">
+        <div class="email-form-row">
+          <input type="email" class="email-input" id="email-bottom" placeholder="you@yourbusiness.com" onkeydown="if(event.key==='Enter'){event.preventDefault();handleSubmit('bottom')}">
+          <button type="button" class="submit-btn" onclick="handleSubmit('bottom')">Subscribe &rarr;</button>
+        </div>
+        <div class="form-status"><div class="status-dot"></div><span>No spam, ever</span></div>
+      </div>
+    </div>
   </section>
 
   <footer class="footer">
-    <div class="footer-logo"><div class="footer-logo-icon">P</div><span class="footer-copyright">© Praxis 2026</span></div>
-    <div class="footer-url">aidashboard.co</div>
+    <div class="footer-logo"><div class="footer-logo-icon">P</div><span class="footer-copyright">&copy; Praxis 2026</span></div>
+    <div class="footer-url">praxis-ai.me</div>
   </footer>
 </div>
 
-<!-- ═══ PAGE 2: THANK YOU ═══ -->
 <div id="thank-you-page" class="page hidden">
   <section class="thank-you-page">
     <div class="thank-you-glow"></div>
     <div class="confetti-container" id="confetti-container"></div>
-    <div class="thank-you-check fade-up">✓</div>
+    <div class="thank-you-check fade-up">&#x2713;</div>
     <h1 class="fade-up-1">You're <span class="green">in.</span></h1>
-    <p class="subtitle fade-up-2">You're on the list. We'll notify you the moment we launch — check your inbox for a welcome message.</p>
+    <p class="subtitle fade-up-2">You'll get updates on new features, the ecosystem launch, and everything we're building.</p>
     <div class="thank-you-details fade-up-3">
-      <div class="detail-tag">WHAT HAPPENS NEXT</div>
-      <div class="detail-row"><span class="detail-icon">📬</span><span><strong>Check your email</strong> — you'll get a welcome message with details about early access.</span></div>
-      <div class="detail-row"><span class="detail-icon">🧪</span><span><strong>Early users shape the product</strong> — your feedback directly influences what we build next.</span></div>
-      <div class="detail-row"><span class="detail-icon">🔐</span><span><strong>Free to start</strong> — no credit card, no commitment. Vetted AI recommendations with trust built in.</span></div>
-      <div class="detail-row"><span class="detail-icon">📣</span><span><strong>Spread the word</strong> — know another SMB owner overwhelmed by AI choices? Send them to <strong>aidashboard.co</strong></span></div>
+      <div class="detail-tag">WHAT'S HAPPENING</div>
+      <div class="detail-row"><span class="detail-icon">&#x1F680;</span><span><strong>Praxis is live right now</strong> &mdash; go try it at <strong>praxis-ai.me</strong></span></div>
+      <div class="detail-row"><span class="detail-icon">&#x1F916;</span><span><strong>AI Ecosystem arriving this week</strong> &mdash; multiple AI models collaborating on your tasks, powered by vetted tools.</span></div>
+      <div class="detail-row"><span class="detail-icon">&#x1F4E3;</span><span><strong>Spread the word</strong> &mdash; know another SMB owner overwhelmed by AI choices? Send them to <strong>aidashboard.co</strong></span></div>
     </div>
-    <button class="back-btn" onclick="showMainPage()">← Back to aidashboard.co</button>
-    <div class="share-hint">aidashboard.co</div>
+    <a href="https://praxis-ai.me" class="btn-primary" target="_blank" style="margin-bottom:16px;animation:none">Try Praxis Now &rarr;</a>
+    <button class="back-btn" onclick="showMainPage()">&larr; Back to aidashboard.co</button>
   </section>
 </div>
 
@@ -285,41 +276,35 @@
 async function handleSubmit(source) {
   const input = document.getElementById('email-' + source);
   const email = input.value.trim();
-
   if (!email || !email.includes('@') || !email.includes('.')) {
     input.classList.add('error');
     setTimeout(() => input.classList.remove('error'), 2000);
     return;
   }
-
   const btns = document.querySelectorAll('.submit-btn');
-  btns.forEach(b => { b.disabled = true; b.innerHTML = '<span class="submit-spinner"></span> Joining…'; });
+  btns.forEach(b => { b.disabled = true; b.innerHTML = '<span class="submit-spinner"></span> Joining\u2026'; });
   document.querySelectorAll('.email-input').forEach(i => { i.disabled = true; i.style.opacity = '0.6'; });
   document.querySelectorAll('.form-error').forEach(e => e.remove());
-
   try {
     const formData = new URLSearchParams();
     formData.append('form-name', 'waitlist');
     formData.append('bot-field', '');
     formData.append('email', email);
     formData.append('source', source === 'hero' ? 'hero_form' : 'bottom_cta');
-
     const res = await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formData.toString(),
     });
-
     if (!res.ok) throw new Error('Form submission failed');
     showThankYouPage();
-
   } catch (err) {
     console.error('Form error:', err);
-    btns.forEach(b => { b.disabled = false; b.innerHTML = 'Get Early Access →'; });
+    btns.forEach(b => { b.disabled = false; b.innerHTML = 'Subscribe \u2192'; });
     document.querySelectorAll('.email-input').forEach(i => { i.disabled = false; i.style.opacity = '1'; });
     document.querySelectorAll('.email-form-row').forEach(row => {
       const d = document.createElement('div'); d.className = 'form-error';
-      d.innerHTML = '<span>✗</span> Something went wrong — please try again.';
+      d.innerHTML = '<span>\u2717</span> Something went wrong \u2014 please try again.';
       row.after(d);
     });
   }
@@ -338,7 +323,7 @@ function showMainPage() {
     t.classList.add('hidden'); t.classList.remove('fade-out'); m.classList.remove('hidden');
     window.scrollTo({top:0,behavior:'instant'});
     document.querySelectorAll('.email-input').forEach(i => { i.value = ''; i.disabled = false; i.style.opacity = '1'; });
-    document.querySelectorAll('.submit-btn').forEach(b => { b.disabled = false; b.innerHTML = 'Get Early Access →'; });
+    document.querySelectorAll('.submit-btn').forEach(b => { b.disabled = false; b.innerHTML = 'Subscribe \u2192'; });
   }, 400);
 }
 
