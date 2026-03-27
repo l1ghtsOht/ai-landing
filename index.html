@@ -1,356 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Praxis — The AI elimination platform for small businesses</title>
-  <meta name="description" content="Praxis eliminates the AI tools you shouldn't use — so you only see the ones you should. Live now at praxis-ai.me. Curated for small businesses with full trust transparency.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #08090c; --surface: #0f1117; --border: #1e2130;
-      --accent: #f97316; --accent-glow: rgba(249,115,22,0.15); --accent-soft: rgba(249,115,22,0.08);
-      --green: #22c55e; --green-soft: rgba(34,197,94,0.1);
-      --text: #e4e2dd; --text-muted: #7c7a73; --text-dim: #4a4940; --white: #faf9f6;
-      --font: 'DM Sans', 'Helvetica Neue', sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-    ::selection { background: rgba(249,115,22,0.25); color: #fff; }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    a { color: inherit; text-decoration: none; }
-    input::placeholder { color: #5a5850; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praxis AI — We Eliminate Before We Recommend</title>
+<meta name="description" content="Praxis AI eliminates AI tools that don't fit your budget, skill level, and industry — so you only see what survived. Free to use.">
+<meta property="og:title" content="Praxis AI — We Eliminate Before We Recommend">
+<meta property="og:description" content="Stop guessing which AI tools to use. Praxis eliminates what doesn't fit and shows you what survived.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://praxis-ai.me">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06060e;
+    --surface: #0c0c18;
+    --border: rgba(255,255,255,0.06);
+    --text: #f0f0f5;
+    --text-dim: rgba(255,255,255,0.45);
+    --text-muted: rgba(255,255,255,0.25);
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.15);
+    --mint: #50e3c2;
+    --red: #ef4444;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes gradientMove { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    @keyframes pulse { 0%,100%{box-shadow:0 0 20px var(--accent-glow)} 50%{box-shadow:0 0 40px rgba(249,115,22,.3)} }
-    @keyframes checkPop { 0%{transform:scale(0);opacity:0} 50%{transform:scale(1.2)} 100%{transform:scale(1);opacity:1} }
-    @keyframes confetti { 0%{transform:translateY(0) rotate(0);opacity:1} 100%{transform:translateY(120px) rotate(360deg);opacity:0} }
+  .ambient {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(80,227,194,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(99,102,241,0.03) 0%, transparent 50%);
+  }
+  .noise {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+  .content { position: relative; z-index: 2; }
 
-    .fade-up{animation:fadeUp .6s ease both} .fade-up-1{animation:fadeUp .6s ease .1s both} .fade-up-2{animation:fadeUp .6s ease .2s both} .fade-up-3{animation:fadeUp .6s ease .3s both} .fade-up-4{animation:fadeUp .6s ease .4s both}
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; height: 56px;
+    background: rgba(6,6,14,0.8); backdrop-filter: blur(30px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-weight: 700; font-size: 15px; letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #f0f0f5, #6366f1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-dim); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500; padding: 7px 18px;
+    background: var(--accent); color: white; border-radius: 8px;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: #5558e6; transform: translateY(-1px); }
 
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;transition:all .3s;border-bottom:1px solid transparent}
-    .nav.scrolled{background:rgba(8,9,12,0.85);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
-    .nav-logo{display:flex;align-items:center;gap:12px}
-    .nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#fb923c);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#0a0a0a}
-    .nav-logo-text{font-weight:700;font-size:17px;letter-spacing:-.02em}
-    .nav-badge{font-size:10px;font-family:var(--font-mono);padding:3px 8px;border-radius:20px;background:var(--green-soft);color:var(--green);font-weight:600}
-    .nav-cta{padding:10px 22px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:var(--font);transition:all .15s;text-decoration:none}
-    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px var(--accent-glow)}
+  .hero {
+    text-align: center; padding: 160px 24px 80px;
+    max-width: 720px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
+    background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.15);
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .hero-badge span { opacity: 0.6; }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 72px); font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient {
+    background: linear-gradient(135deg, #f0f0f5 0%, #6366f1 50%, #50e3c2 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 18px; line-height: 1.65; color: var(--text-dim);
+    max-width: 520px; margin: 0 auto 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; font-size: 15px; font-weight: 600; font-family: inherit;
+    background: var(--accent); color: white; border: none; border-radius: 12px;
+    text-decoration: none; cursor: pointer; transition: all 0.25s;
+    box-shadow: 0 0 30px rgba(99,102,241,0.25);
+  }
+  .btn-primary:hover { background: #5558e6; transform: translateY(-2px); box-shadow: 0 0 40px rgba(99,102,241,0.35); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; font-size: 15px; font-weight: 500; font-family: inherit;
+    background: transparent; color: var(--text-dim); border: 1px solid var(--border);
+    border-radius: 12px; text-decoration: none; cursor: pointer; transition: all 0.25s;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
 
-    .section-tag{font-family:var(--font-mono);font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.08em;margin-bottom:16px}
-    .section-title{font-family:var(--font-serif);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:44px}
-    .section{padding:80px 24px;max-width:960px;margin:0 auto} .section.problem{padding-top:100px}
+  .stats {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+    padding: 48px 24px; max-width: 800px; margin: 0 auto;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 32px; font-weight: 700; letter-spacing: -0.02em;
+    font-family: 'JetBrains Mono', monospace;
+    background: linear-gradient(135deg, var(--text), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
-    .hero-glow{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.08) 0%,transparent 70%);pointer-events:none}
-    .hero-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;background:var(--green-soft);border:1px solid rgba(34,197,94,.2);font-size:13px;color:var(--green);font-weight:500;margin-bottom:32px}
-    .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite}
-    .hero h1{font-family:var(--font-serif);font-size:clamp(38px,6vw,72px);font-weight:400;line-height:1.08;letter-spacing:-.03em;max-width:820px;margin-bottom:24px}
-    .hero h1 .gradient-text{background:linear-gradient(135deg,var(--accent),#fbbf24,var(--accent));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientMove 4s ease infinite}
-    .hero p{font-size:clamp(16px,2vw,20px);line-height:1.7;color:var(--text-muted);max-width:580px;margin-bottom:44px} .hero p strong{color:var(--text)}
+  section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px;
+  }
+  .section-desc {
+    font-size: 16px; line-height: 1.7; color: var(--text-dim);
+    max-width: 600px; margin-bottom: 48px;
+  }
 
-    .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center}
-    .btn-primary{padding:18px 36px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:17px;font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 0 30px var(--accent-glow);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:10px;animation:pulse 3s ease-in-out infinite}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(249,115,22,.35)}
-    .btn-secondary{padding:18px 36px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:17px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;text-decoration:none}
-    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-    .hero-url{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);margin-top:16px}
+  .elim-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .elim-card {
+    padding: 28px 24px; border-radius: 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .elim-card:hover { border-color: rgba(99,102,241,0.2); transform: translateY(-2px); }
+  .elim-step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px; margin-bottom: 16px;
+    font-size: 14px; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+  }
+  .step-red { background: rgba(239,68,68,0.1); color: var(--red); }
+  .step-yellow { background: rgba(250,204,21,0.1); color: #facc15; }
+  .step-green { background: rgba(80,227,194,0.1); color: var(--mint); }
+  .elim-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .elim-card p { font-size: 13px; line-height: 1.6; color: var(--text-dim); }
 
-    .email-form{max-width:460px;width:100%}
-    .email-form-row{display:flex;gap:10px;margin-bottom:10px}
-    .email-input{flex:1;padding:16px 18px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--white);font-size:15px;font-family:var(--font);outline:none;transition:border .2s}
-    .email-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
-    .email-input.error{border-color:rgba(239,68,68,.5)!important}
-    .submit-btn{padding:16px 28px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),#fb923c);color:#0a0a0a;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap;box-shadow:0 0 30px var(--accent-glow);transition:all .15s;min-width:130px;display:flex;align-items:center;justify-content:center;gap:8px}
-    .submit-btn:hover{transform:translateY(-1px);box-shadow:0 0 40px rgba(249,115,22,.3)}
-    .submit-btn:disabled{background:var(--surface);color:var(--text-muted);cursor:wait;box-shadow:none;transform:none}
-    .submit-spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0;display:inline-block}
-    .form-status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted)}
-    .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite}
-    .form-error{font-size:13px;color:#ef4444;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .concierge-card {
+    padding: 48px; border-radius: 20px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(80,227,194,0.03));
+    border: 1px solid rgba(99,102,241,0.12);
+  }
+  .concierge-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+  .concierge-card p { font-size: 15px; line-height: 1.7; color: var(--text-dim); margin-bottom: 24px; max-width: 560px; }
+  .price { font-size: 14px; color: var(--mint); font-weight: 500; margin-bottom: 24px; }
 
-    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .stat{padding:32px 24px;text-align:center;border-right:1px solid var(--border)} .stat:last-child{border-right:none}
-    .stat-num{font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);margin-bottom:6px}
-    .stat-label{font-size:13px;color:var(--text-muted)}
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .trust-item {
+    padding: 24px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .trust-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .trust-item p { font-size: 13px; line-height: 1.5; color: var(--text-dim); }
 
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px} .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px} .flex-3{display:flex;gap:20px} .flex-3>*{flex:1}
-    .card{background:var(--surface);border-radius:16px;padding:28px;border:1px solid var(--border);transition:border-color .2s,transform .2s}
-    .card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-2px)}
-    .card-icon{font-size:28px;margin-bottom:16px} .card-title{font-size:17px;font-weight:600;margin-bottom:10px;color:var(--white)} .card-desc{font-size:14px;line-height:1.7;color:var(--text-muted)}
-    .diff-col{border-radius:16px;padding:28px} .diff-col.old{background:var(--surface);border:1px solid var(--border)} .diff-col.new{background:var(--accent-soft);border:1px solid rgba(249,115,22,.2)}
-    .diff-tag{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.06em;margin-bottom:20px} .diff-tag.old{color:var(--text-muted)} .diff-tag.new{color:var(--accent)}
-    .diff-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:14px;line-height:1.6} .diff-item.old{color:var(--text-muted)} .diff-item.new{color:var(--text)}
-    .diff-icon{flex-shrink:0;margin-top:3px} .diff-icon.old{color:var(--text-dim)} .diff-icon.new{color:var(--accent)}
-    .trust-card{background:var(--surface);border-radius:14px;padding:24px;border:1px solid var(--border);display:flex;gap:16px;align-items:flex-start}
-    .trust-icon-box{width:44px;height:44px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-    .trust-title{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--white)} .trust-desc{font-size:13px;line-height:1.65;color:var(--text-muted)}
-    .step-card{flex:1;position:relative;padding:28px 24px;background:var(--surface);border-radius:14px;border:1px solid var(--border)}
-    .step-num{font-family:var(--font-serif);font-size:56px;font-weight:400;color:var(--accent-soft);position:absolute;top:16px;right:20px;line-height:1}
-    .step-title{font-size:16px;font-weight:600;margin-bottom:10px;color:var(--white);position:relative} .step-desc{font-size:14px;line-height:1.7;color:var(--text-muted);position:relative}
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 24px 24px; margin-top: 40px;
+    background: rgba(0,0,0,0.3);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+    max-width: 900px; margin: 0 auto;
+  }
+  .footer-brand { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .footer-tagline { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; }
+  .footer-contact { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+  .footer-contact a { color: var(--text-dim); text-decoration: none; }
+  .footer-contact a:hover { color: var(--text); }
+  .footer-col-title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: var(--text-muted);
+    text-decoration: none; line-height: 2; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-dim); }
+  .footer-bottom {
+    max-width: 900px; margin: 32px auto 0; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: var(--text-muted);
+  }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { color: var(--text-muted); text-decoration: none; }
+  .footer-legal a:hover { color: var(--text-dim); }
 
-    .eco-banner{background:linear-gradient(135deg,rgba(249,115,22,.06),rgba(34,197,94,.04));border:1px solid rgba(249,115,22,.15);border-radius:16px;padding:36px;text-align:center;margin-top:32px}
-    .eco-banner-tag{font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.08em;margin-bottom:12px}
-    .eco-banner h3{font-family:var(--font-serif);font-size:clamp(22px,3vw,32px);font-weight:400;margin-bottom:12px;color:var(--white)}
-    .eco-banner p{font-size:15px;line-height:1.7;color:var(--text-muted);max-width:540px;margin:0 auto}
+  @media (max-width: 768px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 20px 60px; }
+    .stats { gap: 32px; }
+    .elim-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .concierge-card { padding: 28px 20px; }
+  }
 
-    .faq-section{padding:80px 24px;max-width:680px;margin:0 auto} .faq-item{border-bottom:1px solid var(--border);padding:20px 0}
-    .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:transparent;border:none;color:var(--white);font-size:16px;font-weight:500;cursor:pointer;font-family:var(--font);text-align:left;padding:0}
-    .faq-toggle{font-size:20px;color:var(--text-muted);transition:transform .2s;flex-shrink:0;margin-left:16px} .faq-toggle.open{transform:rotate(45deg)}
-    .faq-answer{margin-top:12px;font-size:14px;line-height:1.7;color:var(--text-muted);animation:fadeUp .2s ease;display:none} .faq-answer.open{display:block}
-    .cta-section{padding:100px 24px 120px;text-align:center;display:flex;flex-direction:column;align-items:center;position:relative}
-    .cta-glow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.06) 0%,transparent 70%);pointer-events:none}
-    .footer{border-top:1px solid var(--border);padding:28px 32px;display:flex;justify-content:space-between;align-items:center}
-    .footer-logo{display:flex;align-items:center;gap:10px}
-    .footer-logo-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#fb923c);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#0a0a0a}
-    .footer-copyright{font-size:13px;color:var(--text-muted)} .footer-url{font-size:12px;color:var(--text-dim);font-family:var(--font-mono)}
-
-    .page{transition:opacity .4s ease,transform .4s ease} .page.hidden{display:none} .page.fade-out{opacity:0;transform:translateY(-10px)}
-    .thank-you-page{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
-    .thank-you-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.06) 0%,rgba(249,115,22,.04) 40%,transparent 70%);pointer-events:none}
-    .thank-you-check{width:80px;height:80px;border-radius:50%;background:var(--green-soft);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:32px;animation:checkPop .5s ease .2s both}
-    .thank-you-page h1{font-family:var(--font-serif);font-size:clamp(32px,5vw,56px);font-weight:400;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;max-width:600px}
-    .thank-you-page h1 .green{color:var(--green)}
-    .thank-you-page .subtitle{font-size:18px;line-height:1.7;color:var(--text-muted);max-width:480px;margin-bottom:40px}
-    .thank-you-details{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:480px;width:100%;margin-bottom:36px;text-align:left}
-    .thank-you-details .detail-tag{font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;margin-bottom:16px}
-    .detail-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px;line-height:1.6;color:var(--text-muted)} .detail-row:last-child{margin-bottom:0}
-    .detail-icon{font-size:18px;flex-shrink:0;margin-top:1px} .detail-row strong{color:var(--text)}
-    .confetti-container{position:absolute;top:0;left:0;right:0;height:200px;overflow:hidden;pointer-events:none}
-    .confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:confetti 2s ease-out forwards}
-    .back-btn{padding:16px 32px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;margin-bottom:16px}
-    .back-btn:hover{border-color:var(--accent);color:var(--accent)}
-
-    @media(max-width:768px){
-      .nav{padding:14px 18px} .stats-bar{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2){border-right:none}
-      .grid-3,.grid-2,.flex-3{grid-template-columns:1fr;display:grid} .hero{padding:100px 18px 60px}
-      .cta-row{flex-direction:column;width:100%;max-width:400px} .btn-primary,.btn-secondary{width:100%;justify-content:center;text-align:center}
-      .email-form-row{flex-direction:column} .submit-btn{width:100%}
-      .footer{flex-direction:column;gap:12px}
-    }
-  </style>
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+</style>
 </head>
 <body>
 
-<form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input name="bot-field">
-  <input name="email" type="email">
-  <input name="source" type="hidden">
-</form>
+<div class="ambient"></div>
+<div class="noise"></div>
 
-<nav class="nav" id="nav">
-  <div class="nav-logo"><div class="nav-logo-icon">P</div><span class="nav-logo-text">Praxis</span><span class="nav-badge">LIVE</span></div>
-  <a href="https://praxis-ai.me" class="nav-cta" target="_blank">Try Praxis Free &rarr;</a>
-</nav>
+<div class="content">
 
-<div id="main-page" class="page">
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-chip fade-up"><span class="live-dot"></span> Praxis is live &mdash; try it now</div>
-    <h1 class="fade-up-1">Stop guessing which AI tools<br><span class="gradient-text">you can actually trust.</span></h1>
-    <p class="fade-up-2">Praxis doesn't recommend everything &mdash; it <strong>eliminates what doesn't fit</strong>, then shows you the survivors with full trust transparency. Free for small businesses.</p>
-    <div class="fade-up-3 cta-row">
-      <a href="https://praxis-ai.me" class="btn-primary" target="_blank">Try Praxis Now &rarr;</a>
-      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+  <nav>
+    <div class="nav-brand">Praxis AI</div>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#concierge">Concierge</a>
+      <a href="#trust">Why Praxis</a>
     </div>
-    <div class="hero-url fade-up-4">praxis-ai.me</div>
-  </section>
+    <a href="https://praxis-ai.me" class="nav-cta">Try Praxis Free →</a>
+  </nav>
 
-  <section class="stats-bar">
-    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">AI tools hand-vetted</div></div>
-    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Industry verticals covered</div></div>
-    <div class="stat"><div class="stat-num">3&ndash;5</div><div class="stat-label">Vetted matches per search</div></div>
-    <div class="stat"><div class="stat-num">1</div><div class="stat-label">Platform to search, vet &amp; adopt</div></div>
-  </section>
-
-  <section class="section problem">
-    <div class="section-tag">THE PROBLEM</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,44px);max-width:600px;margin-bottom:52px">Every SMB guide says &ldquo;use AI.&rdquo;<br>None of them say <em>which AI to trust.</em></h2>
-    <div class="grid-3">
-      <div class="card"><div class="card-icon">&#x1F50D;</div><div class="card-title">You're drowning in choices</div><div class="card-desc">Thousands of AI tools. Endless listicles. No one telling you which ones actually fit YOUR business, budget, and skill level.</div></div>
-      <div class="card"><div class="card-icon">&#x1F512;</div><div class="card-title">Trust is an afterthought</div><div class="card-desc">Most directories don't tell you who owns the tool, where your data goes, or whether it trains on your inputs.</div></div>
-      <div class="card"><div class="card-icon">&#x1F9E9;</div><div class="card-title">Recommendations stop at a list</div><div class="card-desc">You get a list. Then you're on your own. No one helps you actually set up, integrate, or use the tools together.</div></div>
+  <div class="hero">
+    <div class="hero-badge fade-up">
+      <span>◆</span> Elimination-First AI Tool Curation
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-tag">HOW PRAXIS IS DIFFERENT</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Not another directory.<br>An AI elimination platform with full transparency.</h2>
-    <div class="grid-2">
-      <div class="diff-col old"><div class="diff-tag old">WHAT DIRECTORIES DO</div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>List hundreds of tools with no context</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>Sponsored results ranked by ad spend</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>No vetting, no trust data, no data practice disclosure</span></div><div class="diff-item old"><span class="diff-icon old">&#x2717;</span><span>You still have to figure everything out alone</span></div></div>
-      <div class="diff-col new"><div class="diff-tag new">WHAT PRAXIS DOES</div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Eliminates bad fits first &mdash; you see what was rejected and why</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Surfaces privacy, ownership &amp; trust signals on every tool</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>Builds stacks that work together &mdash; with role assignments</span></div><div class="diff-item new"><span class="diff-icon new">&#x2713;</span><span>AI ecosystem arriving soon &mdash; complete tasks on-platform with vetted tools</span></div></div>
+    <h1 class="fade-up delay-1">
+      <span class="gradient">We eliminate</span><br>before we recommend.
+    </h1>
+    <p class="fade-up delay-2">
+      Thousands of AI tools exist. Most aren't right for you.
+      Praxis eliminates what doesn't fit your budget, skill level, and industry — then shows you what survived, with a reason for every cut.
+    </p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="https://praxis-ai.me" class="btn-primary">Start Eliminating — Free</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
-  </section>
+  </div>
 
-  <section class="section">
-    <div class="section-tag">THE TRUST LAYER</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:12px">Every recommendation comes with receipts.</h2>
-    <p style="font-size:16px;color:var(--text-muted);margin-bottom:44px;max-width:540px;line-height:1.7">We surface what other platforms hide &mdash; so you know exactly what you're adopting before you commit.</p>
-    <div class="grid-2">
-      <div class="trust-card"><div class="trust-icon-box">&#x1F6E1;&#xFE0F;</div><div><div class="trust-title">Data Practice Transparency</div><div class="trust-desc">See how each vendor handles your data &mdash; storage, retention, and whether they train on your inputs.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">&#x1F3F4;</div><div><div class="trust-title">Ownership &amp; Sovereignty</div><div class="trust-desc">Know where the tool is built and who controls it. US-owned, allied, or foreign-backed &mdash; disclosed upfront.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">&#x1F4CB;</div><div><div class="trust-title">Compliance Verification</div><div class="trust-desc">SOC2, GDPR, HIPAA &mdash; we check what's certified and surface it so you don't have to dig through vendor docs.</div></div></div>
-      <div class="trust-card"><div class="trust-icon-box">&#x2696;&#xFE0F;</div><div><div class="trust-title">Lock-In &amp; Portability</div><div class="trust-desc">How easy is it to leave? We assess vendor lock-in risk and data portability before recommending any tool.</div></div></div>
+  <div class="stats fade-up delay-4">
+    <div class="stat">
+      <div class="stat-num">253</div>
+      <div class="stat-label">AI tools vetted</div>
     </div>
-  </section>
+    <div class="stat">
+      <div class="stat-num">150+</div>
+      <div class="stat-label">businesses interviewed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">to get started</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">paid placements</div>
+    </div>
+  </div>
 
-  <section class="section" id="how-it-works">
-    <div class="section-tag">HOW IT WORKS</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px)">Three steps. Zero overwhelm.</h2>
-    <div class="flex-3">
-      <div class="step-card"><div class="step-num">01</div><div class="step-title">Describe your goal</div><div class="step-desc">&ldquo;I need help with invoicing&rdquo; or &ldquo;I want to automate social media&rdquo; &mdash; plain English, no jargon required.</div></div>
-      <div class="step-card"><div class="step-num">02</div><div class="step-title">Watch the elimination</div><div class="step-desc">Praxis evaluates the full catalog, eliminates everything that doesn't fit, and shows you exactly why each tool was kept or rejected.</div></div>
-      <div class="step-card"><div class="step-num">03</div><div class="step-title">Adopt with confidence</div><div class="step-desc">Every surviving tool comes with trust data, pricing transparency, and a fit explanation. You know exactly what you're adopting and why.</div></div>
+  <section id="how-it-works">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Three steps. Everything else is eliminated.</div>
+    <div class="section-desc">
+      Praxis doesn't recommend everything — it removes what doesn't belong. What survives is what's worth your time.
     </div>
-    <div class="eco-banner">
-      <div class="eco-banner-tag">COMING THIS WEEK</div>
-      <h3>The AI Ecosystem</h3>
-      <p>Don't just find tools &mdash; use them. Describe a task, and multiple AI models will collaborate on your project, powered exclusively by tools that passed elimination.</p>
-    </div>
-  </section>
-
-  <section class="faq-section">
-    <div class="section-tag">QUESTIONS</div>
-    <h2 class="section-title" style="font-size:32px;margin-bottom:36px">Before you ask</h2>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Is this free?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Praxis is free for small businesses. Search, vet, and get recommendations at no cost. We're building a Pro tier with advanced features &mdash; but the core platform is and will remain free.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do I need to know anything about AI?<span class="faq-toggle">+</span></button><div class="faq-answer">Not at all. Tell Praxis what you're trying to accomplish in plain English. It does the research, vetting, and matching for you.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">How is this different from ChatGPT?<span class="faq-toggle">+</span></button><div class="faq-answer">ChatGPT suggests tools from training data. It can't verify compliance, check data practices, or show you what was eliminated. Praxis starts with elimination &mdash; removing everything that doesn't meet your constraints &mdash; then explains every decision with full transparency.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What kind of tools are in the catalog?<span class="faq-toggle">+</span></button><div class="faq-answer">Over 200 AI tools across writing, design, marketing, automation, analytics, coding, CRM, and more &mdash; each hand-vetted for pricing, compliance, integrations, and data practices. Not every tool gets in. That's the point.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What's the AI Ecosystem?<span class="faq-toggle">+</span></button><div class="faq-answer">A multi-model AI workspace arriving this week where you can describe a task and have multiple AI models collaborate on your project &mdash; powered exclusively by tools that survived our elimination process.</div></div>
-    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Do you offer hands-on help?<span class="faq-toggle">+</span></button><div class="faq-answer">Yes. Our Praxis Concierge service builds you a custom tool stack, written strategy, and guided setup. Contact us at aidashboard@gmail.com for details.</div></div>
-  </section>
-
-  <section class="cta-section">
-    <div class="cta-glow"></div>
-    <div class="section-tag" style="margin-bottom:20px">PRAXIS IS LIVE</div>
-    <h2 style="font-family:var(--font-serif);font-size:clamp(32px,5vw,52px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;max-width:600px;position:relative">Your AI stack should<br>work <em>for</em> you &mdash; not against you.</h2>
-    <p style="font-size:17px;line-height:1.7;color:var(--text-muted);max-width:480px;margin-bottom:40px;position:relative">See every AI tool decision explained &mdash; what survived, what was eliminated, and why. Free for small businesses.</p>
-    <div class="cta-row" style="margin-bottom:40px;position:relative">
-      <a href="https://praxis-ai.me" class="btn-primary" target="_blank">Try Praxis Now &rarr;</a>
-    </div>
-    <div style="position:relative;max-width:460px;width:100%">
-      <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Get updates on new features and the ecosystem launch:</p>
-      <div class="email-form" id="form-bottom">
-        <div class="email-form-row">
-          <input type="email" class="email-input" id="email-bottom" placeholder="you@yourbusiness.com" onkeydown="if(event.key==='Enter'){event.preventDefault();handleSubmit('bottom')}">
-          <button type="button" class="submit-btn" onclick="handleSubmit('bottom')">Subscribe &rarr;</button>
-        </div>
-        <div class="form-status"><div class="status-dot"></div><span>No spam, ever</span></div>
+    <div class="elim-grid">
+      <div class="elim-card">
+        <div class="elim-step step-red">01</div>
+        <h3>Tell us what you need</h3>
+        <p>Describe what you're trying to do — in plain language. Praxis translates your intent into constraints: budget, industry, skill level, compliance needs, and more.</p>
+      </div>
+      <div class="elim-card">
+        <div class="elim-step step-yellow">02</div>
+        <h3>Watch the elimination</h3>
+        <p>Praxis runs 253 tools through a multi-signal scoring engine. Tools that don't meet your constraints are cut — and you see exactly why each one was removed.</p>
+      </div>
+      <div class="elim-card">
+        <div class="elim-step step-green">03</div>
+        <h3>See what survived</h3>
+        <p>What's left is what actually fits. No paid rankings. No sponsored results. Just the tools that passed every filter you care about, with trust scores and evidence.</p>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-logo"><div class="footer-logo-icon">P</div><span class="footer-copyright">&copy; Praxis 2026</span></div>
-    <div class="footer-url">praxis-ai.me</div>
-  </footer>
-</div>
-
-<div id="thank-you-page" class="page hidden">
-  <section class="thank-you-page">
-    <div class="thank-you-glow"></div>
-    <div class="confetti-container" id="confetti-container"></div>
-    <div class="thank-you-check fade-up">&#x2713;</div>
-    <h1 class="fade-up-1">You're <span class="green">in.</span></h1>
-    <p class="subtitle fade-up-2">You'll get updates on new features, the ecosystem launch, and everything we're building.</p>
-    <div class="thank-you-details fade-up-3">
-      <div class="detail-tag">WHAT'S HAPPENING</div>
-      <div class="detail-row"><span class="detail-icon">&#x1F680;</span><span><strong>Praxis is live right now</strong> &mdash; go try it at <strong>praxis-ai.me</strong></span></div>
-      <div class="detail-row"><span class="detail-icon">&#x1F916;</span><span><strong>AI Ecosystem arriving this week</strong> &mdash; multiple AI models collaborating on your tasks, powered by vetted tools.</span></div>
-      <div class="detail-row"><span class="detail-icon">&#x1F4E3;</span><span><strong>Spread the word</strong> &mdash; know another SMB owner overwhelmed by AI choices? Send them to <strong>aidashboard.co</strong></span></div>
+  <section id="concierge">
+    <div class="section-label">For Businesses</div>
+    <div class="section-title">Concierge — done for you.</div>
+    <div class="concierge-card">
+      <h3>Let us handle the entire evaluation.</h3>
+      <p>
+        We audit your current tools, identify gaps, eliminate what's not working, and deliver a
+        custom recommendation stack with implementation guidance — so you don't waste another
+        dollar on the wrong AI subscription.
+      </p>
+      <div class="price">Starting at $497 per engagement</div>
+      <a href="mailto:drake@praxis-ai.me?subject=Concierge%20Inquiry" class="btn-primary">Get Started →</a>
     </div>
-    <a href="https://praxis-ai.me" class="btn-primary" target="_blank" style="margin-bottom:16px;animation:none">Try Praxis Now &rarr;</a>
-    <button class="back-btn" onclick="showMainPage()">&larr; Back to aidashboard.co</button>
   </section>
+
+  <section id="trust">
+    <div class="section-label">Why Praxis</div>
+    <div class="section-title">Built different. On purpose.</div>
+    <div class="section-desc">
+      We're not a directory. We're not a marketplace. We don't sell placements. We exist to tell you the truth about which AI tools are worth your time.
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <h4>Elimination over recommendation</h4>
+        <p>Most platforms show you everything. We show you what's left after we remove what doesn't fit. Fewer options, better decisions.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Zero pay-to-play</h4>
+        <p>No tool pays to be ranked higher. No sponsored results. Our revenue comes from Concierge services and affiliate partnerships — never from manipulating your results.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Trust decay monitoring</h4>
+        <p>Tools change. Companies get acquired. Pricing shifts. Praxis continuously monitors trust signals and flags tools whose reliability has degraded since your last visit.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Built by people who asked 150+ businesses</h4>
+        <p>Praxis was shaped by real conversations with real business owners — not market research reports. We know the pain because we heard it firsthand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="text-align:center; padding-bottom:120px;">
+    <div class="section-title">Stop guessing. Start eliminating.</div>
+    <p style="font-size:16px; color:var(--text-dim); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;">
+      253 AI tools. Vetted. Scored. Ready to be filtered to exactly what you need. Free to use, forever.
+    </p>
+    <a href="https://praxis-ai.me" class="btn-primary" style="font-size:16px; padding:16px 40px;">
+      Try Praxis AI — Free →
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Praxis AI</div>
+        <div class="footer-tagline">We eliminate before we recommend.</div>
+        <div class="footer-contact">
+          <a href="mailto:drake@praxis-ai.me">drake@praxis-ai.me</a><br>
+          Praxis AI LLC — Missouri<br>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Product</div>
+        <a href="https://praxis-ai.me">Search Tools</a>
+        <a href="https://praxis-ai.me/static/tools.html">Tool Directory</a>
+        <a href="https://praxis-ai.me/room">Ecosystem</a>
+        <a href="https://praxis-ai.me/static/pricing.html">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="mailto:drake@praxis-ai.me">Contact</a>
+        <a href="https://praxis-ai.me/terms">Terms of Service</a>
+        <a href="https://praxis-ai.me/privacy">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Praxis AI LLC. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="https://praxis-ai.me/terms">Terms</a>
+        <a href="https://praxis-ai.me/privacy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
 </div>
-
-<script>
-async function handleSubmit(source) {
-  const input = document.getElementById('email-' + source);
-  const email = input.value.trim();
-  if (!email || !email.includes('@') || !email.includes('.')) {
-    input.classList.add('error');
-    setTimeout(() => input.classList.remove('error'), 2000);
-    return;
-  }
-  const btns = document.querySelectorAll('.submit-btn');
-  btns.forEach(b => { b.disabled = true; b.innerHTML = '<span class="submit-spinner"></span> Joining\u2026'; });
-  document.querySelectorAll('.email-input').forEach(i => { i.disabled = true; i.style.opacity = '0.6'; });
-  document.querySelectorAll('.form-error').forEach(e => e.remove());
-  try {
-    const formData = new URLSearchParams();
-    formData.append('form-name', 'waitlist');
-    formData.append('bot-field', '');
-    formData.append('email', email);
-    formData.append('source', source === 'hero' ? 'hero_form' : 'bottom_cta');
-    const res = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
-    });
-    if (!res.ok) throw new Error('Form submission failed');
-    showThankYouPage();
-  } catch (err) {
-    console.error('Form error:', err);
-    btns.forEach(b => { b.disabled = false; b.innerHTML = 'Subscribe \u2192'; });
-    document.querySelectorAll('.email-input').forEach(i => { i.disabled = false; i.style.opacity = '1'; });
-    document.querySelectorAll('.email-form-row').forEach(row => {
-      const d = document.createElement('div'); d.className = 'form-error';
-      d.innerHTML = '<span>\u2717</span> Something went wrong \u2014 please try again.';
-      row.after(d);
-    });
-  }
-}
-
-function showThankYouPage() {
-  const m = document.getElementById('main-page'), t = document.getElementById('thank-you-page');
-  m.classList.add('fade-out');
-  setTimeout(() => { m.classList.add('hidden'); m.classList.remove('fade-out'); t.classList.remove('hidden'); window.scrollTo({top:0,behavior:'instant'}); spawnConfetti(); }, 400);
-}
-
-function showMainPage() {
-  const m = document.getElementById('main-page'), t = document.getElementById('thank-you-page');
-  t.classList.add('fade-out');
-  setTimeout(() => {
-    t.classList.add('hidden'); t.classList.remove('fade-out'); m.classList.remove('hidden');
-    window.scrollTo({top:0,behavior:'instant'});
-    document.querySelectorAll('.email-input').forEach(i => { i.value = ''; i.disabled = false; i.style.opacity = '1'; });
-    document.querySelectorAll('.submit-btn').forEach(b => { b.disabled = false; b.innerHTML = 'Subscribe \u2192'; });
-  }, 400);
-}
-
-function spawnConfetti() {
-  const c = document.getElementById('confetti-container'); c.innerHTML = '';
-  const colors = ['#f97316','#fb923c','#fbbf24','#22c55e','#60a5fa','#e4e2dd'];
-  for (let i = 0; i < 40; i++) {
-    const d = document.createElement('div'); d.className = 'confetti';
-    d.style.left = Math.random()*100+'%'; d.style.top = '-10px';
-    d.style.background = colors[Math.floor(Math.random()*colors.length)];
-    d.style.animationDelay = Math.random()+'s'; d.style.animationDuration = (1.5+Math.random())+'s';
-    d.style.width = (6+Math.random()*6)+'px'; d.style.height = (6+Math.random()*6)+'px';
-    c.appendChild(d);
-  }
-}
-
-function toggleFaq(btn) {
-  const a = btn.nextElementSibling, t = btn.querySelector('.faq-toggle'), o = a.classList.contains('open');
-  document.querySelectorAll('.faq-answer').forEach(x => x.classList.remove('open'));
-  document.querySelectorAll('.faq-toggle').forEach(x => x.classList.remove('open'));
-  if (!o) { a.classList.add('open'); t.classList.add('open'); }
-}
-
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
-</script>
 
 </body>
 </html>
